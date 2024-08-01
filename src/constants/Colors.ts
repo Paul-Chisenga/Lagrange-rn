@@ -8,6 +8,8 @@ export type TintColor = {
   default: string;
   accent_1: string;
   accent_2: string;
+  accent_3: string;
+  accent_4: string;
   white: string; // White
   system: string;
 };
@@ -16,6 +18,8 @@ export type BackgroundColor = {
   default: string;
   accent_1: string;
   accent_2: string;
+  accent_3: string;
+  accent_4: string;
   white: string;
 };
 export type ThemeColor = {
@@ -47,6 +51,8 @@ const tintColors: TintColor = {
   default: "#1672EC", // blue
   accent_1: "#2AB930", // green
   accent_2: "#F0D042", // yellow
+  accent_3: "#A1A1A1", // grey
+  accent_4: "#082853", // Dark blue
   white: "#ffffff", // White
   system: "#000000",
 };
@@ -62,6 +68,8 @@ export const Colors: { light: ThemeColor; dark: ThemeColor } = {
       default: tintColors.default,
       accent_1: tintColors.accent_1,
       accent_2: tintColors.accent_2,
+      accent_3: tintColors.accent_3,
+      accent_4: tintColors.accent_4,
       white: tintColors.white,
     },
     tint: tintColors,
@@ -81,11 +89,9 @@ export const Colors: { light: ThemeColor; dark: ThemeColor } = {
       default: tintColors.default,
       accent_1: tintColors.accent_1,
       accent_2: tintColors.accent_2,
+      accent_3: tintColors.accent_3,
+      accent_4: tintColors.accent_4,
       white: tintColors.white,
-      // default: `${tintColors.default}22`,
-      // accent_1: `${tintColors.accent_1}22`,
-      // accent_2: `${tintColors.accent_2}22`,
-      // white: `${tintColors.white}22`,
     },
     tint: tintColors,
     icon: { default: "#9DB2CE" },

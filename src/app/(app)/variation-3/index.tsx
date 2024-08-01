@@ -1,28 +1,24 @@
-import { Tabs } from "expo-router";
-import MenuIcon from "../../../assets/svgs/MenuIcon";
-import BellIcon from "../../../assets/svgs/BellIcon";
+import { Stack } from "expo-router";
+import MenuIcon from "../../../../assets/svgs/MenuIcon";
+import BellIcon from "../../../../assets/svgs/BellIcon";
 import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 import { MineCard } from "@/components/MineCard";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
-import UpcomingMineSvg from "../../../assets/svgs/UpcomingMineSvg";
-import UpcomingMineLogoSvg from "../../../assets/svgs/UpcomingMineLogoSvg";
+import UpcomingMineSvg from "../../../../assets/svgs/UpcomingMineSvg";
+import UpcomingMineLogoSvg from "../../../../assets/svgs/UpcomingMineLogoSvg";
 import { ThemedButton } from "@/components/ThemedButton";
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { authContext } from "@/context/auth";
 import { useContext } from "react";
 import { setStorageItemAsync } from "@/utils/localstorage";
-import { Demo } from "@/components/Demo";
-import { StatusBar } from "expo-status-bar";
 
 export default function Index() {
   const { signOut } = useContext(authContext);
 
   async function handleSignOut() {
     try {
-      // setIsLoading(true);
-      // await sleep(3000);
       await setStorageItemAsync("lagrande_exists", null);
       await signOut();
     } catch (error) {
@@ -32,22 +28,13 @@ export default function Index() {
 
   return (
     <>
-      <StatusBar
-        animated
-        style={"light"}
-        backgroundColor={Colors.light.tint.default}
-      />
-      <Tabs.Screen
+      <Stack.Screen
         options={{
           headerTitle: "",
-          headerStyle: {
-            backgroundColor: Colors.light.tint.default,
-          },
-          headerShadowVisible: false,
           headerLeft({ tintColor }) {
             return (
               <Pressable>
-                <MenuIcon width={24} height={24} fill={"#fff"} />
+                <MenuIcon width={24} height={24} fill={tintColor} />
               </Pressable>
             );
           },
@@ -61,26 +48,17 @@ export default function Index() {
                 }}
               >
                 <Pressable>
-                  <BellIcon width={24} height={24} fill={"#fff"} />
+                  <BellIcon width={24} height={24} fill={tintColor} />
                 </Pressable>
-                {/* <Pressable onPress={handleSignOut}>
+                <Pressable onPress={handleSignOut}>
                   <Ionicons
                     name="log-out-outline"
                     size={24}
                     color={tintColor}
                   />
-                </Pressable> */}
-                <Pressable onPress={handleSignOut}>
-                  <Ionicons name="person-outline" size={24} color={"#fff"} />
                 </Pressable>
               </View>
             );
-          },
-          headerLeftContainerStyle: {
-            paddingHorizontal: 20,
-          },
-          headerRightContainerStyle: {
-            paddingHorizontal: 20,
           },
         }}
       />
@@ -149,7 +127,7 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 30 },
+  container: { flex: 1, paddingTop: 20 },
   scrollContainer: {
     flex: 1,
   },

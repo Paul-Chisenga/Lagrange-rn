@@ -13,6 +13,10 @@ import { MineCard } from "@/components/MineCard";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SequestCard } from "@/components/SequestCard";
 import { PaymentMethodCard } from "@/components/PaymentMethodCard";
+import { ThemedButton1 } from "./ThemedButton1";
+import PushDownIcon from "../../assets/svgs/PushDownIcon";
+import RepeatIcon from "../../assets/svgs/RepeatIcon";
+import ShareIcon from "../../assets/svgs/ShareIcon";
 
 const mpsa = require("../../assets/images/mpesa.png");
 
@@ -149,7 +153,45 @@ export function Demo() {
             <Checkbox color={Colors.light.tint.accent_2} />
             <Checkbox color={Colors.light.tint.white} />
           </View>
+          <View style={{ rowGap: 10, flex: 1 }}>
+            <ThemedButton1 iconName={"share-social"} variant="accent_3">
+              Convert
+            </ThemedButton1>
+            <ThemedButton1 Icon={RepeatIcon} variant="accent_4">
+              Withdraw
+            </ThemedButton1>
+            <ThemedButton1 Icon={ShareIcon}>Add</ThemedButton1>
+            <ThemedButton1
+              iconName={"arrow-back"}
+              Icon={PushDownIcon}
+              variant="accent_1"
+            >
+              Back
+            </ThemedButton1>
+          </View>
         </ThemedView>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginBottom: 50,
+          }}
+        >
+          <ThemedButton1 iconName={"share-social"} variant="accent_3">
+            Convert
+          </ThemedButton1>
+          <ThemedButton1 Icon={RepeatIcon} variant="accent_4">
+            Withdraw
+          </ThemedButton1>
+          <ThemedButton1 Icon={ShareIcon}>Add</ThemedButton1>
+          <ThemedButton1
+            iconName={"arrow-back"}
+            Icon={PushDownIcon}
+            variant="accent_1"
+          >
+            Back
+          </ThemedButton1>
+        </View>
         <SwipeModal visible={showModal} onDismiss={() => setShowModal(false)}>
           <ThemedView
             style={{

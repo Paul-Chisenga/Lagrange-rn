@@ -15,10 +15,18 @@ export default function AppLayout() {
   return (
     <>
       <StatusBar animated style={"auto"} />
-      <Stack>
-        {/* <Stack.Screen name="index" /> */}
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+      {/* <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="politics-1" />
+        <Stack.Screen name="variation-1" />
+        <Stack.Screen name="variation-2" />
+        <Stack.Screen name="variation-3" />
+      </Stack> */}
     </>
   );
 }
