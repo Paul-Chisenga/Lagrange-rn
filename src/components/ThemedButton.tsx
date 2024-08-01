@@ -1,91 +1,129 @@
-import { Pressable, View, type PressableProps, StyleSheet } from "react-native";
+import {
+  Pressable,
+  View,
+  type PressableProps,
+  StyleSheet,
+  useColorScheme,
+  TextStyle,
+  ViewStyle,
+  ActivityIndicator,
+} from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "./ThemedText";
 import { BackgroundColor } from "@/constants/Colors";
 import { IconProps } from "@expo/vector-icons/build/createIconSet";
 import { Ionicons } from "@expo/vector-icons";
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 
 export type ThemedButtonProps = PressableProps & {
   lightColor?: string;
   darkColor?: string;
   type?: "default" | "link" | "outline";
   variant?: keyof BackgroundColor;
-  children: string;
+  children?: string;
   icon?: IconProps<ComponentProps<typeof Ionicons>["name"]>;
+  textStyle?: TextStyle;
+  style?: ViewStyle;
+  loading?: boolean;
+  button?: boolean;
 };
 
-export function ThemedButton({
-  style,
-  lightColor,
-  darkColor,
-  type = "default",
-  variant = "default",
-  children,
-  icon,
-  ...rest
-}: ThemedButtonProps) {
+export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
+  {
+    style,
+    lightColor,
+    darkColor,
+    type = "default",
+    variant = "default",
+    children,
+    icon,
+    textStyle,
+    loading,
+    button = false,
+    ...rest
+  }: ThemedButtonProps,
+  ref
+) {
+  const theme = useColorScheme();
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
     "background",
     variant
   );
+  const borderColor = backgroundColor;
+  let tintColor = variant !== "white" ? "#fff" : "#000";
+  if (type !== "default") {
+    tintColor = backgroundColor;
+  }
 
   return (
-    <View style={{ borderRadius: 8, overflow: "hidden" }}>
+    <View
+      style={[
+        { borderRadius: style?.borderRadius ?? 4, overflow: "hidden" },
+        icon && !children && styles.icon,
+      ]}
+    >
       <Pressable
+        ref={ref}
         style={[
-          { backgroundColor: type === "default" ? backgroundColor : undefined },
+          { borderRadius: style?.borderRadius ?? 4 },
+          type === "default" && {
+            backgroundColor: backgroundColor,
+            borderColor: `${borderColor}55`,
+            borderWidth: theme === "light" ? 0 : 1,
+          },
+          type === "outline" && {
+            borderWidth: 1,
+            borderColor: `${borderColor}66`,
+            backgroundColor: `${tintColor}22`,
+          },
+          icon && !children && styles.icon,
           styles.container,
-          type === "default" ? styles.default : undefined,
-          type === "outline" ? styles.outline : undefined,
-          type === "link" ? styles.link : undefined,
           style,
         ]}
+        android_ripple={{ color: "#ccc" }}
         {...rest}
-        android_ripple={{ color: "#000" }}
       >
-        {icon && (
-          <Ionicons
-            size={16}
-            color={variant !== "system" ? "#fff" : "#000"}
-            {...icon}
-          />
+        {icon && !loading && <Ionicons size={12} color={tintColor} {...icon} />}
+        {loading && <ActivityIndicator size={"small"} color={tintColor} />}
+        {children && (
+          <ThemedText
+            lightColor={tintColor}
+            darkColor={tintColor}
+            style={[styles.text, textStyle]}
+          >
+            {children}
+          </ThemedText>
         )}
-        <ThemedText
-          lightColor={variant !== "white" ? "#fff" : "#000"}
-          darkColor={variant !== "white" ? "#fff" : "#000"}
-          style={styles.text}
-        >
-          {children}
-        </ThemedText>
       </Pressable>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     columnGap: 5,
+    flexGrow: 1,
   },
-  default: {},
-  outline: {
-    borderWidth: 1,
-  },
-  link: {},
   text: {
     textTransform: "uppercase",
     textAlign: "center",
-    // fontWeight: "700",
     letterSpacing: 1.5,
     fontSize: 10,
     fontFamily: "IBMPlexSans_700Bold",
+    marginHorizontal: 5,
+    lineHeight: 12,
+  },
+  icon: {
+    width: 45,
+    height: 45,
+    borderRadius: 50,
+    padding: 0,
   },
 });

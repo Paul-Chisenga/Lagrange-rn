@@ -3,45 +3,13 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-// // Light
-// const tintColorLight = "#1672EC";
-// const secondaryColorLight_1 = "#2AB930";
-// const secondaryColorLight_2 = "#F0D042";
-// // dark
-// const tintColorDark = "#fff";
-// const secondaryColorDark_1 = "#2AB930";
-// const secondaryColorDark_2 = "#F0D042";
-
-// export const Colors = {
-//   light: {
-//     title: "#082853",
-//     text: "#11181C",
-//     background: "#fff",
-//     tint: tintColorLight,
-//     secondary_1: secondaryColorLight_1,
-//     secondary_2: secondaryColorLight_2,
-//     icon: "#9DB2CE",
-//     tabIconDefault: "#9DB2CE",
-//     tabIconSelected: "#fff",
-//   },
-//   dark: {
-//     title: "#fff",
-//     text: "#ECEDEE",
-//     background: "#151718",
-//     tint: tintColorDark,
-//     secondary_1: secondaryColorDark_1,
-//     secondary_2: secondaryColorDark_2,
-//     icon: "#9BA1A6",
-//     tabIconDefault: "#9BA1A6",
-//     tabIconSelected: tintColorDark,
-//   },
-// };
-
 // TYPES
-type TintColor = {
+export type TintColor = {
   default: string;
   accent_1: string;
   accent_2: string;
+  white: string; // White
+  system: string;
 };
 export type BackgroundColor = {
   system: string;
@@ -56,8 +24,12 @@ export type ThemeColor = {
     title: string;
   };
   background: BackgroundColor;
+
   tint: TintColor;
   icon: {
+    default: string;
+  };
+  tabBackground: {
     default: string;
   };
   tabIconDefault: {
@@ -66,18 +38,17 @@ export type ThemeColor = {
   tabIconSelected: {
     default: string;
   };
+  tabShopBackground: {
+    default: string;
+  };
 };
 
-// Light
-const tintColorLight: TintColor = {
+const tintColors: TintColor = {
   default: "#1672EC", // blue
   accent_1: "#2AB930", // green
   accent_2: "#F0D042", // yellow
-};
-// dark
-const tintColorDark: TintColor = {
-  ...tintColorLight,
-  default: "#000",
+  white: "#ffffff", // White
+  system: "#000000",
 };
 
 export const Colors: { light: ThemeColor; dark: ThemeColor } = {
@@ -88,31 +59,39 @@ export const Colors: { light: ThemeColor; dark: ThemeColor } = {
     },
     background: {
       system: "#fff",
-      default: tintColorLight.default,
-      accent_1: tintColorDark.accent_1,
-      accent_2: tintColorLight.accent_2,
-      white: "#fff",
+      default: tintColors.default,
+      accent_1: tintColors.accent_1,
+      accent_2: tintColors.accent_2,
+      white: tintColors.white,
     },
-    tint: tintColorLight,
+    tint: tintColors,
     icon: { default: "#9DB2CE" },
+    tabBackground: { default: tintColors.default },
     tabIconDefault: { default: "#9DB2CE" },
     tabIconSelected: { default: "#fff" },
+    tabShopBackground: { default: tintColors.default },
   },
   dark: {
     text: {
-      default: "#ECEDEE",
+      default: "#CCC",
       title: "#fff",
     },
     background: {
       system: "#151718",
-      default: tintColorLight.default,
-      accent_1: tintColorDark.accent_1,
-      accent_2: tintColorLight.accent_2,
-      white: "#fff",
+      default: tintColors.default,
+      accent_1: tintColors.accent_1,
+      accent_2: tintColors.accent_2,
+      white: tintColors.white,
+      // default: `${tintColors.default}22`,
+      // accent_1: `${tintColors.accent_1}22`,
+      // accent_2: `${tintColors.accent_2}22`,
+      // white: `${tintColors.white}22`,
     },
-    tint: tintColorDark,
+    tint: tintColors,
     icon: { default: "#9DB2CE" },
+    tabBackground: { default: "#131516" },
     tabIconDefault: { default: "#9DB2CE" },
-    tabIconSelected: { default: "#fff" },
+    tabIconSelected: { default: tintColors.default },
+    tabShopBackground: { default: "#000" },
   },
 };

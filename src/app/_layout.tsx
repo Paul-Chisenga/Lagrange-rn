@@ -12,6 +12,8 @@ import {
   Inter_400Regular,
   Inter_600SemiBold,
   Inter_700Bold,
+  BebasNeue_400Regular,
+  BeVietnamPro_400Regular,
 } from "@expo-google-fonts/dev";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -21,6 +23,7 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, authContext } from "@/context/auth";
+import { StatusBar } from "expo-status-bar";
 
 // Component that makes sure that navigation stack is loaded only when the session context has been queried
 function AppWithContext() {
@@ -33,22 +36,23 @@ function AppWithContext() {
     });
   }, []);
 
-  // Hide splashscreen
-  useEffect(() => {
-    if (!isLoading) {
-      SplashScreen.hideAsync();
-    }
-  }, [isLoading]);
-
   if (isLoading) {
     return null;
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="(app)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-    </Stack>
+    <>
+      <StatusBar animated style="light" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(app)" />
+        <Stack.Screen name="(auth)" />
+      </Stack>
+    </>
   );
 }
 
@@ -65,6 +69,8 @@ export default function RootLayout() {
     Inter_400Regular,
     Inter_600SemiBold,
     Inter_700Bold,
+    BebasNeue_400Regular,
+    BeVietnamPro_400Regular,
   });
 
   if (!loaded) {

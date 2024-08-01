@@ -1,7 +1,6 @@
 import { authContext } from "@/context/auth";
 import { Redirect, Stack } from "expo-router";
 import { useContext } from "react";
-import { View, Text } from "react-native";
 export default function AuthLayout() {
   const { session } = useContext(authContext);
 
@@ -10,9 +9,15 @@ export default function AuthLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerTitle: "Authentication" }} />
-      <Stack.Screen name="otp" options={{ headerTitle: "OTP" }} />
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: "slide_from_right",
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="sign-up" />
+      <Stack.Screen name="otp" />
     </Stack>
   );
 }

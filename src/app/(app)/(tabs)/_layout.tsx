@@ -3,41 +3,47 @@ import React from "react";
 
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Image } from "expo-image";
-import { View } from "react-native";
+import { View, Text } from "react-native";
+import HomeIcon from "../../../../assets/svgs/HomeIcon";
+import ShopIcon from "../../../../assets/svgs/ShopIcon";
+import TreesIcon from "../../../../assets/svgs/Treescon";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const theme = useColorScheme();
+  const headerBackground = useThemeColor({}, "background", "system");
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor:
-          colorScheme === "light" ? "#fff" : Colors.dark.background.default,
+        tabBarActiveTintColor: Colors[theme ?? "light"].tabIconSelected.default,
         tabBarStyle: {
-          backgroundColor: Colors[colorScheme ?? "light"].tint.default,
-          borderTopWidth: 0,
-          elevation: 0,
+          backgroundColor: Colors[theme ?? "light"].tabBackground.default,
         },
-        tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tint.default,
-        tabBarLabelStyle: {
-          fontFamily: "Inter_600SemiBold",
+        tabBarInactiveTintColor:
+          Colors[theme ?? "light"].tabIconDefault.default,
+        tabBarLabel({ focused, children, color }) {
+          if (!focused) return null;
+          return (
+            <Text
+              style={{ color, fontFamily: "Inter_600SemiBold", fontSize: 12 }}
+            >
+              {children}
+            </Text>
+          );
         },
+        tabBarHideOnKeyboard: true,
+        headerShadowVisible: false,
+        headerTintColor: theme === "light" ? "#000" : "#fff",
+        headerStyle: { backgroundColor: headerBackground },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <Image
-              source={
-                focused
-                  ? require(`../../../../assets/icons/home.png`)
-                  : require(`../../../../assets/icons/home-outline.png`)
-              }
-              style={{ width: 24, height: 24 }}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <HomeIcon stroke={color} strokeWidth={1} width={22} height={22} />
           ),
         }}
       />
@@ -45,13 +51,11 @@ export default function TabLayout() {
         name="activities"
         options={{
           title: "Activities",
-          tabBarLabelStyle: {
-            color: Colors[colorScheme ?? "light"].tint.default,
-          },
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ color, size }) => (
             <View
               style={{
-                backgroundColor: Colors[colorScheme ?? "light"].tint.default,
+                backgroundColor:
+                  Colors[theme ?? "light"].tabShopBackground.default,
                 width: 55,
                 height: 55,
                 padding: 15,
@@ -60,10 +64,7 @@ export default function TabLayout() {
                 top: -22,
               }}
             >
-              <Image
-                source={require(`../../../../assets/icons/shop.png`)}
-                style={{ width: 24, height: 24 }}
-              />
+              <ShopIcon stroke={color} width={22} height={22} />
             </View>
           ),
         }}
@@ -72,11 +73,8 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, focused }) => (
-            <Image
-              source={require(`../../../../assets/icons/trees.png`)}
-              style={{ width: 24, height: 24 }}
-            />
+          tabBarIcon: ({ color, size }) => (
+            <TreesIcon stroke={color} width={22} height={22} />
           ),
         }}
       />

@@ -1,5 +1,6 @@
 import { authContext } from "@/context/auth";
 import { Redirect, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useContext } from "react";
 
 export default function AppLayout() {
@@ -12,8 +13,12 @@ export default function AppLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <>
+      <StatusBar animated style={"auto"} />
+      <Stack>
+        {/* <Stack.Screen name="index" /> */}
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </>
   );
 }
