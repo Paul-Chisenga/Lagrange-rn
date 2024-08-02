@@ -14,6 +14,7 @@ import { authContext } from "@/context/auth";
 import { useContext } from "react";
 import { setStorageItemAsync } from "@/utils/localstorage";
 import { Demo } from "@/components/Demo";
+import Home2 from "@/components/home/Home2";
 
 export default function Index() {
   const { signOut } = useContext(authContext);
@@ -72,7 +73,8 @@ export default function Index() {
         }}
       />
 
-      <Demo />
+      {/* <Demo /> */}
+      <Home2 />
     </>
   );
 }

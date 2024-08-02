@@ -2,7 +2,6 @@ import Svg, { Path, Rect, SvgProps } from "react-native-svg";
 export default function PushUpIcon(props: SvgProps) {
   return (
     <Svg viewBox="0 0 21 20" {...props}>
-      <Rect width="20" height="20" transform="matrix(-1 0 0 1 20.5 0)" />
       <Path
         fill-rule="evenodd"
         clip-rule="evenodd"

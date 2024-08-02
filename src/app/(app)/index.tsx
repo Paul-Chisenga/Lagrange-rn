@@ -5,7 +5,7 @@ import { Colors } from "@/constants/Colors";
 import { Link, Redirect } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 export default function index() {
-  return <Redirect href={"variation-1"} />;
+  return <Redirect href={"variation-3"} />;
   return (
     <ThemedView style={styles.container}>
       <Link href={"variation-1"} asChild>

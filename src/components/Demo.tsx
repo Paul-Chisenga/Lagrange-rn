@@ -17,6 +17,8 @@ import { ThemedButton1 } from "./ThemedButton1";
 import PushDownIcon from "../../assets/svgs/PushDownIcon";
 import RepeatIcon from "../../assets/svgs/RepeatIcon";
 import ShareIcon from "../../assets/svgs/ShareIcon";
+import { ThemedButton2 } from "./ThemedButton2";
+import ArrowLongRight from "../../assets/svgs/ArrowLongRight";
 
 const mpsa = require("../../assets/images/mpesa.png");
 
@@ -169,6 +171,29 @@ export function Demo() {
               Back
             </ThemedButton1>
           </View>
+          <View style={{ rowGap: 10, flex: 1 }}>
+            <ThemedButton1
+              iconName={"share-social"}
+              variant="accent_3"
+              type="outline"
+            >
+              Convert
+            </ThemedButton1>
+            <ThemedButton1 Icon={RepeatIcon} variant="accent_2" type="outline">
+              Withdraw
+            </ThemedButton1>
+            <ThemedButton1 Icon={ShareIcon} type="outline">
+              Add
+            </ThemedButton1>
+            <ThemedButton1
+              iconName={"arrow-back"}
+              Icon={PushDownIcon}
+              variant="accent_1"
+              type="outline"
+            >
+              Back
+            </ThemedButton1>
+          </View>
         </ThemedView>
         <View
           style={{
@@ -191,6 +216,24 @@ export function Demo() {
           >
             Back
           </ThemedButton1>
+        </View>
+        <View style={{ rowGap: 10, flex: 1, marginBottom: 50 }}>
+          <ThemedButton2 iconName={"share-social"} variant="accent_3">
+            Convert
+          </ThemedButton2>
+          <ThemedButton2 Icon={RepeatIcon} variant="accent_2">
+            Withdraw
+          </ThemedButton2>
+          <ThemedButton2 Icon={ShareIcon}>Add</ThemedButton2>
+          <ThemedButton2
+            iconName={"arrow-back"}
+            Icon={PushDownIcon}
+            variant="accent_1"
+          >
+            Back
+          </ThemedButton2>
+          <ThemedButton2>See all</ThemedButton2>
+          <ThemedButton2 Icon={ArrowLongRight}></ThemedButton2>
         </View>
         <SwipeModal visible={showModal} onDismiss={() => setShowModal(false)}>
           <ThemedView

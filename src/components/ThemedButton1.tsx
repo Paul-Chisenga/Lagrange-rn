@@ -1,22 +1,11 @@
-import {
-  Pressable,
-  View,
-  StyleSheet,
-  useColorScheme,
-  ActivityIndicator,
-} from "react-native";
+import { Pressable, View, StyleSheet, ActivityIndicator } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "./ThemedText";
 import { BackgroundColor, Colors, TintColor } from "@/constants/Colors";
 import { IconProps } from "@expo/vector-icons/build/createIconSet";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  ComponentProps,
-  forwardRef,
-  FunctionComponent,
-  ReactElement,
-} from "react";
+import { ComponentProps, forwardRef, FunctionComponent } from "react";
 import { SvgProps } from "react-native-svg";
 
 type ItemColor = {
@@ -134,7 +123,11 @@ export const ThemedButton1 = forwardRef<View, ThemedButtonProps>(function (
             ref={ref}
             style={[
               type === "default" && { backgroundColor: backgroundColor },
-              type === "outline" && { borderWidth: 1, borderColor },
+              type === "outline" && {
+                borderWidth: 1,
+                borderColor: `${borderColor}66`,
+                backgroundColor: `${backgroundColor}22`,
+              },
               styles.btnInnerContainer,
             ]}
             android_ripple={{ color: "#ccc" }}

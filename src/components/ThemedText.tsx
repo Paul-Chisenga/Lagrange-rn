@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_600SemiBold",
   },
   title: {
-    fontSize: 24,
-    lineHeight: 32,
+    fontSize: 20,
+    lineHeight: 26,
     fontFamily: "IBMPlexSans_700Bold",
   },
   subtitle: {

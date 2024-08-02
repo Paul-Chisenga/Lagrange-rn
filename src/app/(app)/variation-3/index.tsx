@@ -1,21 +1,19 @@
 import { Stack } from "expo-router";
 import MenuIcon from "../../../../assets/svgs/MenuIcon";
 import BellIcon from "../../../../assets/svgs/BellIcon";
-import { View, StyleSheet, ScrollView, Pressable } from "react-native";
-import { MineCard } from "@/components/MineCard";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import UpcomingMineSvg from "../../../../assets/svgs/UpcomingMineSvg";
-import UpcomingMineLogoSvg from "../../../../assets/svgs/UpcomingMineLogoSvg";
-import { ThemedButton } from "@/components/ThemedButton";
+import { View, StyleSheet, Pressable, useColorScheme } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { authContext } from "@/context/auth";
 import { useContext } from "react";
 import { setStorageItemAsync } from "@/utils/localstorage";
+import Home2 from "@/components/home/Home2";
+import { StatusBar } from "expo-status-bar";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Index() {
   const { signOut } = useContext(authContext);
+  const theme = useColorScheme();
 
   async function handleSignOut() {
     try {
@@ -28,12 +26,27 @@ export default function Index() {
 
   return (
     <>
+      {theme === "light" && (
+        <StatusBar
+          animated
+          backgroundColor={Colors.light.tint.default}
+          style="light"
+        />
+      )}
       <Stack.Screen
         options={{
           headerTitle: "",
+          // headerShadowVisible: true,
+          headerStyle: {
+            // backgroundColor:
+            //   theme === "light" ? `${Colors.light.tint.default}05` : undefined,
+          },
           headerLeft({ tintColor }) {
             return (
-              <Pressable>
+              <Pressable
+                style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+              >
+                {/* <ThemedText>MENU</ThemedText> */}
                 <MenuIcon width={24} height={24} fill={tintColor} />
               </Pressable>
             );
@@ -50,78 +63,20 @@ export default function Index() {
                 <Pressable>
                   <BellIcon width={24} height={24} fill={tintColor} />
                 </Pressable>
-                <Pressable onPress={handleSignOut}>
+                {/* <Pressable onPress={handleSignOut}>
                   <Ionicons
                     name="log-out-outline"
                     size={24}
                     color={tintColor}
                   />
-                </Pressable>
+                </Pressable> */}
               </View>
             );
           },
         }}
       />
 
-      <ThemedView style={styles.container}>
-        <ScrollView
-          style={styles.scrollContainer}
-          contentContainerStyle={styles.scrollContent}
-        >
-          <View style={styles.minesContainer}>
-            <ThemedText
-              style={[styles.title, styles.minesTitle]}
-              type="subtitle"
-            >
-              Available Mines
-            </ThemedText>
-            <ScrollView
-              horizontal
-              style={styles.minesScrollContainer}
-              contentContainerStyle={styles.minesScrollContent}
-            >
-              <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
-              <MineCard title={"Nairobi Rehabilitation"} variant={"default"} />
-              <MineCard title={"jamuhuri wetland"} variant={"accent_2"} />
-            </ScrollView>
-          </View>
-          <View style={styles.upcomingContainer}>
-            <ThemedText type="subtitle">Upcoming Mines</ThemedText>
-            <ThemedView style={styles.upcomingCardContainer}>
-              {/* Logo */}
-              <UpcomingMineLogoSvg style={styles.upcomingCardLogo} />
-              <View style={styles.upcomingCardInnerContainer}>
-                {/* Image */}
-                <UpcomingMineSvg />
-                {/* Text */}
-                <View>
-                  <ThemedText
-                    style={styles.upcomingCardTitle}
-                    type="subtitle"
-                    lightColor="#000"
-                  >
-                    Nairobi Tree planting day
-                  </ThemedText>
-                  <ThemedText
-                    style={styles.upcomingCardDescription}
-                    lightColor="#000"
-                  >
-                    Nairobi Tree planting day is set to improve various water
-                    resources that serve the people of nairobi
-                  </ThemedText>
-                  <ThemedButton
-                    style={styles.upcomingCardBtn}
-                    icon={{ name: "add" }}
-                    variant="default"
-                  >
-                    mine carbon
-                  </ThemedButton>
-                </View>
-              </View>
-            </ThemedView>
-          </View>
-        </ScrollView>
-      </ThemedView>
+      <Home2 />
     </>
   );
 }

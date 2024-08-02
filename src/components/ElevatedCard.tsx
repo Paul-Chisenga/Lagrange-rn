@@ -7,18 +7,19 @@ export function ElevatedCard({ style, ...rest }: ViewProps) {
     <ThemedView
       style={[
         styles.container,
-        { borderColor: theme === "light" ? "#0000001f" : "#ffffff11" },
+        { borderColor: theme === "light" ? "#00000008" : "#ffffff11" },
         style,
       ]}
       darkColor="#ffffff11"
+      lightColor="#00000005"
       {...rest}
     />
   );
 }
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: 13,
+    paddingHorizontal: 15,
     borderRadius: 5,
     borderWidth: 1,
   },
