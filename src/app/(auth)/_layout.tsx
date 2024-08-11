@@ -5,7 +5,7 @@ export default function AuthLayout() {
   const { session } = useContext(authContext);
 
   if (session) {
-    return <Redirect href={"(app)"} />;
+    return <Redirect href={"/(app)"} />;
   }
 
   return (
@@ -17,7 +17,6 @@ export default function AuthLayout() {
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="sign-up" />
-      <Stack.Screen name="otp" />
     </Stack>
   );
 }

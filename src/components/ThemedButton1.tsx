@@ -25,6 +25,7 @@ export type ThemedButtonProps = {
   Icon?: FunctionComponent<SvgProps>;
   loading?: boolean;
   button?: boolean;
+  onPress?: () => void;
 };
 
 function parseIconColor(
@@ -44,6 +45,8 @@ function parseIconColor(
         case "white":
           color = { light: "#000000", dark: "#000000" };
           break;
+        case "system":
+          color = { light: "#000000", dark: "#ffffff" };
         default:
           break;
       }
@@ -95,6 +98,7 @@ export const ThemedButton1 = forwardRef<View, ThemedButtonProps>(function (
     Icon,
     loading,
     button = false,
+    onPress,
   }: ThemedButtonProps,
   ref
 ) {
@@ -131,6 +135,7 @@ export const ThemedButton1 = forwardRef<View, ThemedButtonProps>(function (
               styles.btnInnerContainer,
             ]}
             android_ripple={{ color: "#ccc" }}
+            onPress={onPress}
           >
             {!Icon && <Ionicons size={18} color={iconFill} name={iconName} />}
             {Icon && <Icon width={18} height={18} fill={iconFill} />}

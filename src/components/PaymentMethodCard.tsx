@@ -11,9 +11,10 @@ interface Props {
     width: number;
     height: number;
   };
+  checked?: boolean;
 }
 
-export function PaymentMethodCard({ title, img }: Props) {
+export function PaymentMethodCard({ title, img, checked }: Props) {
   return (
     <ElevatedCard style={styles.container}>
       <ThemedText style={styles.title} type="title">
@@ -21,11 +22,26 @@ export function PaymentMethodCard({ title, img }: Props) {
       </ThemedText>
       <View>
         <Image
-          style={[styles.image, { width: img.width, height: img.height }]}
+          style={[
+            styles.image,
+            {
+              width: img.width,
+              height: img.height,
+            },
+          ]}
           source={img.source}
         />
       </View>
-      <View style={styles.radio} />
+      <View
+        style={[
+          styles.radio,
+          {
+            backgroundColor: !checked
+              ? Colors.light.tint.accent_3
+              : Colors.light.tint.default,
+          },
+        ]}
+      />
     </ElevatedCard>
   );
 }
@@ -47,6 +63,6 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: 16,
-    backgroundColor: Colors.light.tint.default,
+    // backgroundColor: Colors.light.tint.default,
   },
 });

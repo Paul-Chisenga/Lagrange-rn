@@ -62,12 +62,12 @@ export function Demo() {
             marginVertical: 10,
           }}
         >
-          <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
+          {/* <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
           <MineCard title={"Nairobi Rehabilitation"} variant={"default"} />
-          <MineCard title={"jamuhuri wetland"} variant={"accent_2"} />
+          <MineCard title={"jamuhuri wetland"} variant={"accent_2"} /> */}
         </ScrollView>
         <View style={{ rowGap: 25, marginVertical: 25 }}>
-          <ProjectCard
+          {/* <ProjectCard
             image="project_1"
             title="Ireti site"
             subtitle="Controlled space"
@@ -81,7 +81,7 @@ export function Demo() {
             image="project_3"
             title="Adr wetland"
             subtitle="Controlled space"
-          />
+          /> */}
         </View>
         <View style={{ rowGap: 25, marginVertical: 25, paddingHorizontal: 12 }}>
           <SequestCard project={"Jackson Wandemi"} trees={500} carbon={47.71} />

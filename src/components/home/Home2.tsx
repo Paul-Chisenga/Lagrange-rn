@@ -10,7 +10,9 @@ import PushDownIcon from "../../../assets/svgs/PushDownIcon";
 import { SequestCard } from "../SequestCard";
 import { Colors } from "@/constants/Colors";
 import { ThemedButton2 } from "../ThemedButton2";
-import ArrowLongRight from "../../../assets/svgs/ArrowLongRight";
+import PageTitle from "../PageTitle";
+import mines from "@/data/mines.json";
+import { Link } from "expo-router";
 
 export default function Home2() {
   return (
@@ -21,9 +23,7 @@ export default function Home2() {
       >
         {/* Numbers */}
         <View style={styles.numbersContainer}>
-          <ThemedText style={styles.numbersTitle} type="title">
-            Total Carbon Sequested
-          </ThemedText>
+          <PageTitle>Total Carbon Sequested</PageTitle>
           <View style={styles.tco2eContainer}>
             <ThemedText
               style={styles.tco2eAmount}
@@ -61,9 +61,11 @@ export default function Home2() {
           <ThemedButton1 Icon={PushDownIcon} variant="accent_3">
             Deposit
           </ThemedButton1>
-          <ThemedButton1 Icon={PushUpIcon} variant="accent_4">
-            Withdraw
-          </ThemedButton1>
+          <Link href={"/variation-3/withdraw"} asChild>
+            <ThemedButton1 Icon={PushUpIcon} variant="accent_4">
+              Withdraw
+            </ThemedButton1>
+          </Link>
         </View>
         {/* Latest sequest */}
         <View style={styles.latestSequest}>
@@ -71,7 +73,9 @@ export default function Home2() {
             <ThemedText style={styles.title} type="subtitle">
               Latest sequest
             </ThemedText>
-            <ThemedButton2 iconName="arrow-forward"></ThemedButton2>
+            <Link href={"/variation-3/sequests"} asChild>
+              <ThemedButton2 iconName="arrow-forward" variant="default" />
+            </Link>
           </View>
           <SequestCard
             project={"Jamuhuri wetland"}
@@ -92,9 +96,9 @@ export default function Home2() {
             contentContainerStyle={styles.minesScrollContent}
             showsHorizontalScrollIndicator={false}
           >
-            <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
-            <MineCard title={"Nairobi Rehabilitation"} variant={"default"} />
-            <MineCard title={"jamuhuri wetland"} variant={"accent_2"} />
+            <MineCard mine={mines[0]} variant={"accent_1"} />
+            <MineCard mine={mines[1]} variant={"default"} />
+            <MineCard mine={mines[2]} variant={"accent_2"} />
           </ScrollView>
         </View>
       </ScrollView>

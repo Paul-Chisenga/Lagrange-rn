@@ -8,13 +8,41 @@ import {
   StyleSheet,
   useColorScheme,
   View,
+  ScrollView,
+  ViewProps,
+  ViewStyle,
 } from "react-native";
 import { AnimatedThemedView } from "./ThemedView";
 import { useRouter } from "expo-router";
+import { useHeaderHeight } from "@react-navigation/elements";
+import { Colors } from "@/constants/Colors";
+
+interface SwipeModalHeaderProps extends ViewProps {}
+export function SwipeModalHeader(props: SwipeModalHeaderProps) {
+  return <View {...props} />;
+}
+interface SwipeModalContentProps extends ViewProps {}
+export function SwipeModalContent(props: SwipeModalContentProps) {
+  return (
+    <ScrollView
+      style={{}}
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+    >
+      <View {...props} />
+    </ScrollView>
+  );
+}
+interface SwipeModalFooterProps extends ViewProps {}
+export function SwipeModalFooter(props: SwipeModalFooterProps) {
+  return <View {...props} />;
+}
 
 interface Props extends PropsWithChildren {
   visible: boolean;
   allowDismiss?: boolean;
+  staticModal?: boolean;
+  containerStyle?: ViewStyle;
   onDismiss?: () => void;
 }
 
@@ -22,9 +50,15 @@ export function SwipeModal({
   visible,
   children,
   allowDismiss = true,
+  staticModal = false,
+  containerStyle,
   onDismiss,
 }: Props) {
+  const headerHeight = useHeaderHeight();
   const theme = useColorScheme();
+
+  const containerRef = useRef<View>(null);
+
   const panY = useRef(
     new Animated.Value(Dimensions.get("screen").height)
   ).current;
@@ -48,7 +82,7 @@ export function SwipeModal({
 
   const panResponder = useRef(
     PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponder: () => !staticModal,
       onMoveShouldSetPanResponder: () => false,
       onPanResponderMove: Animated.event([null, { dy: panY }], {
         useNativeDriver: false,
@@ -99,7 +133,12 @@ export function SwipeModal({
     >
       <View style={styles.overlay}>
         <AnimatedThemedView
-          style={[styles.container, { top }]}
+          ref={containerRef}
+          style={[
+            styles.container,
+            { top, maxHeight: Dimensions.get("screen").height - headerHeight },
+            containerStyle,
+          ]}
           {...panResponder.panHandlers}
         >
           <View
@@ -130,5 +169,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get("screen").width / 3,
     marginHorizontal: "auto",
     borderRadius: 50,
+    marginBottom: 15,
   },
 });

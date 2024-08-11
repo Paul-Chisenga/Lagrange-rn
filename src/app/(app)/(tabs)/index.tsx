@@ -88,9 +88,9 @@ export default function Index() {
               style={styles.minesScrollContainer}
               contentContainerStyle={styles.minesScrollContent}
             >
-              <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
+              {/* <MineCard title={"ewaso rehabilitation"} variant={"accent_1"} />
               <MineCard title={"Nairobi Rehabilitation"} variant={"default"} />
-              <MineCard title={"jamuhuri wetland"} variant={"accent_2"} />
+              <MineCard title={"jamuhuri wetland"} variant={"accent_2"} /> */}
             </ScrollView>
           </View>
           <View style={styles.upcomingContainer}>

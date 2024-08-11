@@ -2,13 +2,12 @@ import { ElevatedCard } from "@/components/ElevatedCard";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Colors } from "@/constants/Colors";
-import { Link, Redirect } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-export default function index() {
-  return <Redirect href={"variation-3"} />;
+import { Link } from "expo-router";
+import { Pressable, StyleSheet } from "react-native";
+export default function Index() {
   return (
     <ThemedView style={styles.container}>
-      <Link href={"variation-1"} asChild>
+      <Link href={"/variation-1"} asChild>
         <Pressable style={styles.cardContainer}>
           <ElevatedCard
             style={[
@@ -20,7 +19,7 @@ export default function index() {
           </ElevatedCard>
         </Pressable>
       </Link>
-      <Link href={"variation-2"} asChild>
+      <Link href={"/variation-2"} asChild>
         <Pressable style={styles.cardContainer}>
           <ElevatedCard
             style={[
@@ -32,7 +31,7 @@ export default function index() {
           </ElevatedCard>
         </Pressable>
       </Link>
-      <Link href={"variation-2"} asChild>
+      <Link href={"/variation-2"} asChild>
         <Pressable style={styles.cardContainer}>
           <ElevatedCard
             style={[

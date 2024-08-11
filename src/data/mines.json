@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "title": "Ewaso rehabilitation",
+    "projects": [
+      {
+        "id": "1",
+        "title": "Ireti site",
+        "subtitle": "Controlled space",
+        "image_url": "project_1"
+      },
+      {
+        "id": "2",
+        "title": "Juja site",
+        "subtitle": "Controlled space",
+        "image_url": "project_2"
+      },
+      {
+        "id": "3",
+        "title": "Adr wetland",
+        "subtitle": "Controlled space",
+        "image_url": "project_3"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Nairobi Rehabilitation",
+    "projects": [
+      {
+        "id": "1",
+        "title": "Ireti site",
+        "subtitle": "Controlled space",
+        "image_url": "project_1"
+      },
+      {
+        "id": "2",
+        "title": "Juja site",
+        "subtitle": "Controlled space",
+        "image_url": "project_2"
+      },
+      {
+        "id": "3",
+        "title": "Adr wetland",
+        "subtitle": "Controlled space",
+        "image_url": "project_3"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Jamuhuri wetland",
+    "projects": [
+      {
+        "id": "1",
+        "title": "Ireti site",
+        "subtitle": "Controlled space",
+        "image_url": "project_1"
+      },
+      {
+        "id": "2",
+        "title": "Juja site",
+        "subtitle": "Controlled space",
+        "image_url": "project_2"
+      },
+      {
+        "id": "3",
+        "title": "Adr wetland",
+        "subtitle": "Controlled space",
+        "image_url": "project_3"
+      }
+    ]
+  }
+]

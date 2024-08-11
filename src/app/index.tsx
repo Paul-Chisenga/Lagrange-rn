@@ -23,7 +23,7 @@ export default function Index() {
     setLoading(true);
     await setStorageItemAsync("lagrande_exists", "true");
 
-    router.replace("(app)");
+    router.replace("/(app)");
   }
 
   const bootStrap = useCallback(async () => {
@@ -46,7 +46,7 @@ export default function Index() {
   }
 
   if (!firstTime) {
-    return <Redirect href={"(app)"} />;
+    return <Redirect href={"/(app)"} />;
   }
 
   return (

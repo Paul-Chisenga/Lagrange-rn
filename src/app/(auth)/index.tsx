@@ -59,10 +59,10 @@ export default function SignIn() {
           <ModalCard style={styles.modalContainer}>
             <LoginForm
               onSwitchToSignup={() => {
-                router.push("sign-up");
+                router.push("/sign-up");
               }}
               onForgotPassword={() => {
-                router.push("reset-password");
+                router.push("/reset-password");
               }}
               onSubmit={handleLogin}
               loading={loading}
