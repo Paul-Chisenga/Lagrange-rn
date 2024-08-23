@@ -15,6 +15,7 @@ import { ThemedButton, ThemedButtonProps } from "../ThemedButton";
 
 import * as Crypto from "expo-crypto";
 import { ThemedCheckBox, ThemedCheckProps } from "../ThemedCheckBox";
+import { AuthScreenButton } from "../auth/AuthScreenButton";
 
 type ValidationMeta = {
   id: string;
@@ -148,7 +149,8 @@ export const Form = forwardRef<View, Props>(function (
         // check for button with submit property
         else if (
           isValidElement<ThemedButtonProps>(child) &&
-          Object.is(child.type, ThemedButton)
+          (Object.is(child.type, ThemedButton) ||
+            Object.is(child.type, AuthScreenButton))
           //   !child.props.button
         ) {
           return cloneElement(child, {

@@ -1,15 +1,15 @@
 import { ThemedView } from "@/components/ThemedView";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import mines from "@/data/mines.json";
-import PageTitle from "@/components/PageTitle";
 import { ThemedTextInput } from "@/components/ThemedTextInput";
 import { ThemedText } from "@/components/ThemedText";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Image } from "expo-image";
 import { Colors } from "@/constants/Colors";
+import { Drawer } from "expo-router/drawer";
 
-const mineImg = require("../../../../../assets/images/mine.png");
+const mineImg = require("../../../../assets/images/mine.png");
 
 export default function Mine() {
   const { id } = useLocalSearchParams();
@@ -17,16 +17,12 @@ export default function Mine() {
 
   return (
     <>
-      <Stack.Screen options={{ headerTitle: mine.title }} />
+      <Drawer.Screen options={{ headerTitle: mine.title }} />
       <ThemedView style={styles.container}>
         <ScrollView
-          style={styles.scrollContainer}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20 }}
         >
-          {/* <PageTitle>{mine.title}</PageTitle> */}
-          {/* <View style={{ marginBottom: 25 }}>
-          <ThemedTextInput label="Search available locations" />
-        </View> */}
           {/* Header card */}
           <ThemedView
             lightColor={Colors.light.tint.default}
@@ -45,6 +41,9 @@ export default function Mine() {
               </ThemedText>
             </View>
           </ThemedView>
+          <View style={{ marginTop: 20 }}>
+            <ThemedTextInput label="Search available projects" />
+          </View>
           {/* Projects */}
           <View style={styles.projectsContainer}>
             <ThemedText style={styles.projectTitle} type="subtitle">
@@ -63,10 +62,6 @@ export default function Mine() {
 }
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  scrollContainer: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
   mineCardContainer: {
     marginTop: 20,
     borderRadius: 20,

@@ -1,14 +1,14 @@
 import { PaymentMethodCard } from "@/components/PaymentMethodCard";
 import { ThemedView } from "@/components/ThemedView";
-import { Stack } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 import { StyleSheet } from "react-native";
 
-const mpsa = require("../../../../assets/images/mpesa.png");
+const mpsa = require("../../../assets/images/mpesa.png");
 
 export default function Withdraw() {
   return (
     <>
-      <Stack.Screen
+      <Drawer.Screen
         options={{
           headerTitle: "Withdraw",
         }}

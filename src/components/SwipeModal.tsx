@@ -112,7 +112,10 @@ export function SwipeModal({
       transparent
       onRequestClose={() => {
         if (allowDismiss) {
-          handleDismiss();
+          // handleDismiss();
+          if (onDismiss) {
+            onDismiss();
+          }
         } else {
           Alert.alert("", "Are you sure you want to cancel this process ?", [
             {
@@ -124,7 +127,10 @@ export function SwipeModal({
               text: "Yes",
               style: "destructive",
               onPress() {
-                router.back();
+                // router.back();
+                if (onDismiss) {
+                  onDismiss();
+                }
               },
             },
           ]);
@@ -136,7 +142,10 @@ export function SwipeModal({
           ref={containerRef}
           style={[
             styles.container,
-            { top, maxHeight: Dimensions.get("screen").height - headerHeight },
+            {
+              top,
+              maxHeight: Dimensions.get("screen").height - headerHeight - 50,
+            },
             containerStyle,
           ]}
           {...panResponder.panHandlers}

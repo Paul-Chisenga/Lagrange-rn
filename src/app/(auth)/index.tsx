@@ -1,18 +1,19 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { useContext, useState } from "react";
 import { useRouter } from "expo-router";
 import { sleep } from "@/utils/functions";
-import { ThemedView } from "@/components/ThemedView";
-import { Colors } from "@/constants/Colors";
-import { ModalCard } from "@/components/ModalCard";
-import Constants from "expo-constants";
-import LoginForm from "@/components/auth/LoginForm";
 import LogoAuthPageSvg from "../../../assets/svgs/LogoAuthPageSvg";
-import { SwipeModal } from "@/components/SwipeModal";
-import OTPForm from "@/components/auth/OTPForm";
 import { authContext } from "@/context/auth";
-import { ThemedButton } from "@/components/ThemedButton";
+import {
+  AuthScreen,
+  AuthScreenContent,
+  AuthScreenFooter,
+  AuthScreenHeader,
+} from "@/components/auth/AuthScreen";
+import { ThemedText } from "@/components/ThemedText";
 import { ThemedTextInput } from "@/components/ThemedTextInput";
+import OTPForm from "@/components/auth/OTPForm";
+import { AuthScreenButton } from "@/components/auth/AuthScreenButton";
 
 export default function SignIn() {
   const [loading, setLoading] = useState(false);
@@ -21,20 +22,19 @@ export default function SignIn() {
 
   const router = useRouter();
 
-  async function handleLogin() {
+  async function handleSubmit() {
     try {
       setLoading(true);
       await sleep(3000);
-      setShowOtp(true);
-      // router.push("otp");
       setLoading(false);
+      setShowOtp(true);
     } catch (error) {
       setLoading(false);
-      throw new Error("Sign in failed");
+      throw new Error("Something went wrong");
     }
   }
 
-  async function handleAuth() {
+  async function handleLogin() {
     try {
       setLoading(true);
       await sleep(3000);
@@ -45,56 +45,69 @@ export default function SignIn() {
     }
   }
 
+  function handleForgotPassword() {
+    router.push("/forgot-password");
+  }
+
   return (
-    <ThemedView
-      style={styles.container}
-      lightColor={Colors.light.background.default}
-    >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        {/* Logo */}
-        <View style={styles.logoContainer}>
-          <LogoAuthPageSvg style={styles.logo} />
+    <AuthScreen Img={LogoAuthPageSvg} onSubmit={handleSubmit}>
+      <AuthScreenHeader title="Welcome">
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: 4,
+            alignItems: "center",
+          }}
+        >
+          <ThemedText>Don't have an account yet ? </ThemedText>
+          <TouchableOpacity onPress={() => router.push("/sign-up")}>
+            <Text style={{ color: "red" }}>Register Now</Text>
+          </TouchableOpacity>
         </View>
-        {!showOtp && (
-          <ModalCard style={styles.modalContainer}>
-            <LoginForm
-              onSwitchToSignup={() => {
-                router.push("/sign-up");
-              }}
-              onForgotPassword={() => {
-                router.push("/reset-password");
-              }}
-              onSubmit={handleLogin}
-              loading={loading}
-            />
-          </ModalCard>
-        )}
-        <OTPForm
-          onSubmit={handleAuth}
+      </AuthScreenHeader>
+      <AuthScreenContent>
+        <View style={styles.formGroup}>
+          <ThemedTextInput label="ID NO" placeholder="Type ID No" required />
+          <ThemedTextInput
+            label="Password"
+            placeholder="Password"
+            secureTextEntry={true}
+            required
+          />
+          <TouchableOpacity disabled={loading} onPress={handleForgotPassword}>
+            <ThemedText style={styles.forgotPassword} type="defaultSemiBold">
+              Forgot password
+            </ThemedText>
+          </TouchableOpacity>
+        </View>
+      </AuthScreenContent>
+      <AuthScreenFooter>
+        <AuthScreenButton
+          icon={{ name: "log-in" }}
+          disabled={loading}
           loading={loading}
-          style={{ flex: 0, paddingHorizontal: 30, paddingVertical: 20 }}
-          show={showOtp}
-        />
-      </ScrollView>
-    </ThemedView>
+        >
+          Login
+        </AuthScreenButton>
+      </AuthScreenFooter>
+      <OTPForm
+        onSubmit={handleLogin}
+        loading={loading}
+        style={{ flex: 0, paddingHorizontal: 30, paddingVertical: 20 }}
+        show={showOtp}
+        onCancel={() => setShowOtp(false)}
+      />
+    </AuthScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  logoContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+  formGroup: {
     paddingVertical: 30,
-    paddingTop: 30 + Constants.statusBarHeight,
+    rowGap: 20,
   },
-  logo: {},
-
-  modalContainer: {
-    paddingHorizontal: 30,
-    flex: 1,
+  forgotPassword: {
+    marginLeft: "auto",
   },
 });

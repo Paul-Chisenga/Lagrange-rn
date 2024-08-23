@@ -27,7 +27,7 @@ export function MineCard({ mine, variant }: Props) {
       </ThemedText>
       <MineIllustration style={styles.illustration} />
       <View style={styles.btnContainer}>
-        <Link href={`/variation-3/mines/${mine.id}`} asChild>
+        <Link href={`/mines/${mine.id}`} asChild>
           <ThemedButton
             style={styles.btn}
             textStyle={{ fontSize: 7, lineHeight: 12 }}

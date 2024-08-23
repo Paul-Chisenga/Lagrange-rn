@@ -1,5 +1,5 @@
 import Svg, { G, Mask, Path, SvgProps } from "react-native-svg";
-export default function WelcomePageSvg(props: SvgProps) {
+export default function IntroImage1(props: SvgProps) {
   return (
     <Svg width="376" height="205" viewBox="0 0 376 205" fill="none" {...props}>
       <Path
@@ -212,7 +212,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask0_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="46"
         y="31"
@@ -348,7 +347,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask1_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="88"
         y="53"
@@ -367,7 +365,6 @@ export default function WelcomePageSvg(props: SvgProps) {
         />
         <Mask
           id="mask2_2941_27541"
-          style={{ maskType: "luminance" }}
           maskUnits="userSpaceOnUse"
           x="108"
           y="56"
@@ -427,7 +424,6 @@ export default function WelcomePageSvg(props: SvgProps) {
         />
         <Mask
           id="mask3_2941_27541"
-          style={{ maskType: "luminance" }}
           maskUnits="userSpaceOnUse"
           x="101"
           y="63"
@@ -487,7 +483,6 @@ export default function WelcomePageSvg(props: SvgProps) {
         />
         <Mask
           id="mask4_2941_27541"
-          style={{ maskType: "luminance" }}
           maskUnits="userSpaceOnUse"
           x="100"
           y="72"
@@ -531,7 +526,6 @@ export default function WelcomePageSvg(props: SvgProps) {
         />
         <Mask
           id="mask5_2941_27541"
-          style={{ maskType: "luminance" }}
           maskUnits="userSpaceOnUse"
           x="112"
           y="68"
@@ -584,7 +578,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask6_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="74"
         y="110"
@@ -644,7 +637,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask7_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="75"
         y="108"
@@ -704,7 +696,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask8_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="76"
         y="105"
@@ -764,7 +755,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask9_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="77"
         y="103"
@@ -824,7 +814,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask10_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="77"
         y="101"
@@ -884,7 +873,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask11_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="78"
         y="98"
@@ -944,7 +932,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask12_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="79"
         y="95"
@@ -1004,7 +991,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask13_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="87"
         y="116"
@@ -1064,7 +1050,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask14_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="87"
         y="114"
@@ -1124,7 +1109,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask15_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="88"
         y="111"
@@ -1184,7 +1168,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask16_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="89"
         y="110"
@@ -1244,7 +1227,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask17_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="89"
         y="107"
@@ -1304,7 +1286,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask18_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="91"
         y="104"
@@ -1364,7 +1345,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask19_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="91"
         y="101"
@@ -1424,7 +1404,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask20_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="119"
         y="119"
@@ -1484,7 +1463,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask21_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="95"
         y="92"
@@ -1544,7 +1522,6 @@ export default function WelcomePageSvg(props: SvgProps) {
       />
       <Mask
         id="mask22_2941_27541"
-        style={{ maskType: "luminance" }}
         maskUnits="userSpaceOnUse"
         x="80"
         y="79"

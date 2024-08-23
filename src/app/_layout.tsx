@@ -3,7 +3,6 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-// import { useFonts } from "expo-font";
 import {
   useFonts,
   IBMPlexSans_400Regular,
@@ -25,14 +24,14 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, authContext } from "@/context/auth";
 import { StatusBar } from "expo-status-bar";
 
-// Component that makes sure that navigation stack is loaded only when the session context has been queried
-function AppWithContext() {
+// Component that makes sure that navigation stack is loaded only when the authentication context has been computed
+function LoadAuthState() {
   const { isLoading, loadAuthState } = useContext(authContext);
 
   // query session from storage if any
   useEffect(() => {
     loadAuthState().catch(() => {
-      throw new Error("Loading auth failed");
+      throw new Error("Something went wrong");
     });
   }, []);
 
@@ -43,11 +42,7 @@ function AppWithContext() {
   return (
     <>
       <StatusBar animated style="light" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
+      <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="(app)" />
         <Stack.Screen name="(auth)" />
@@ -81,7 +76,7 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <AuthProvider>
-          <AppWithContext />
+          <LoadAuthState />
         </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>

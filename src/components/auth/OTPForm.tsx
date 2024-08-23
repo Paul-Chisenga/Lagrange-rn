@@ -10,15 +10,22 @@ interface Props {
   style?: ViewStyle;
   show: boolean;
   onSubmit: () => void;
+  onCancel: () => void;
 }
 
-export default function OTPForm({ onSubmit, loading, style, show }: Props) {
+export default function OTPForm({
+  onSubmit,
+  onCancel,
+  loading,
+  style,
+  show,
+}: Props) {
   function handleSubmit() {
     onSubmit();
   }
 
   return (
-    <SwipeModal visible={show} allowDismiss={false}>
+    <SwipeModal visible={show} allowDismiss={false} onDismiss={onCancel}>
       <View style={[styles.container, style]}>
         <View>
           <ThemedText style={styles.title} type="title">

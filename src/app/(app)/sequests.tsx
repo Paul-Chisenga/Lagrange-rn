@@ -1,15 +1,21 @@
-import PageTitle from "@/components/PageTitle";
 import { SequestCard } from "@/components/SequestCard";
 import { ThemedView } from "@/components/ThemedView";
-import { Stack } from "expo-router";
+import { HeaderBackButton } from "@react-navigation/elements";
+import { Drawer } from "expo-router/drawer";
 import { ScrollView, StyleSheet, View } from "react-native";
 export default function Sequests() {
   return (
     <>
-      <Stack.Screen options={{ headerTitle: "Sequests" }} />
+      <Drawer.Screen
+        options={{
+          headerTitle: "Sequests",
+          headerLeft(props) {
+            return <HeaderBackButton />;
+          },
+        }}
+      />
       <ThemedView style={styles.container}>
-        {/* <PageTitle>Sequests</PageTitle> */}
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.sequestsContainer}>
             {new Array(20).fill(null).map((_, idx) => (
               <SequestCard

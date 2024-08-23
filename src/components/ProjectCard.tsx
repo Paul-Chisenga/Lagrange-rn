@@ -35,9 +35,14 @@ export function ProjectCard({ project }: Props) {
   const [plantTree, setPlantTree] = useState(false);
   const [photos, setPhotos] = useState(false);
 
+  function handleSubmitMeasurement() {
+    setPhotos(false);
+    setPlantTree(true);
+  }
+
   function handleSubmitSequest() {
+    // setPhotos(true);
     setPlantTree(false);
-    setPhotos(true);
   }
 
   return (
@@ -58,15 +63,30 @@ export function ProjectCard({ project }: Props) {
         </View>
         {/* Button */}
         <View>
-          <ThemedButton variant="default" onPress={() => setPlantTree(true)}>
+          <ThemedButton variant="default" onPress={() => setPhotos(true)}>
             Plant Tree
           </ThemedButton>
         </View>
       </View>
       {/* Sequest Form */}
       <SwipeModal visible={plantTree} onDismiss={() => setPlantTree(false)}>
-        <SwipeModalHeader>
-          <PageTitle>{project.title}</PageTitle>
+        <SwipeModalHeader
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            columnGap: 10,
+            marginBottom: 20,
+          }}
+        >
+          <ThemedButton1
+            iconName="arrow-back"
+            variant="system"
+            onPress={() => {
+              setPlantTree(false);
+              setPhotos(true);
+            }}
+          />
+          <PageTitle style={{ marginBottom: 0 }}>{project.title}</PageTitle>
         </SwipeModalHeader>
         <SwipeModalContent style={{ paddingHorizontal: 25, rowGap: 25 }}>
           <ThemedTextInput label="Registration" />
@@ -82,35 +102,25 @@ export function ProjectCard({ project }: Props) {
             justifyContent: "flex-end",
           }}
         >
-          <ThemedButton
-            icon={{ name: "arrow-forward" }}
-            onPress={handleSubmitSequest}
-          >
-            Proceed
+          <ThemedButton icon={{ name: "cart-outline" }}>
+            Proceed Carbon
           </ThemedButton>
         </SwipeModalFooter>
       </SwipeModal>
       {/* Sequest pictures */}
       <SwipeModal visible={photos} onDismiss={() => setPhotos(false)}>
-        <SwipeModalHeader
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            columnGap: 10,
-            marginBottom: 20,
-          }}
-        >
-          <ThemedButton1
-            iconName="arrow-back"
-            variant="system"
-            onPress={() => {
-              setPhotos(false);
-              setPlantTree(true);
+        <SwipeModalHeader style={{}}>
+          <PageTitle style={{ marginBottom: 5 }}>{project.title}</PageTitle>
+          <ThemedText
+            style={{
+              textAlign: "center",
+              width: "80%",
+              marginHorizontal: "auto",
             }}
-          />
-          <PageTitle style={{ marginBottom: 0 }}>
-            Record measurement activity
-          </PageTitle>
+          >
+            Capture and upload measurement process,documenting key steps like
+            measuring tree height, diameter at ground level, and species.
+          </ThemedText>
         </SwipeModalHeader>
         <SwipeModalContent style={{ paddingHorizontal: 25 }}>
           <View
@@ -118,7 +128,7 @@ export function ProjectCard({ project }: Props) {
               borderRadius: 20,
               borderWidth: 1,
               borderColor: "#00000011",
-              height: 500,
+              height: 300,
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -133,8 +143,11 @@ export function ProjectCard({ project }: Props) {
             justifyContent: "flex-end",
           }}
         >
-          <ThemedButton icon={{ name: "cart-outline" }}>
-            Proceed Carbon
+          <ThemedButton
+            icon={{ name: "arrow-forward" }}
+            onPress={handleSubmitMeasurement}
+          >
+            Proceed
           </ThemedButton>
         </SwipeModalFooter>
       </SwipeModal>

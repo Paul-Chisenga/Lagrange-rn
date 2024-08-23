@@ -81,6 +81,9 @@ export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
           icon && !children && styles.icon,
           styles.container,
           style,
+          rest.disabled && {
+            opacity: 0.7,
+          },
         ]}
         android_ripple={{ color: "#ccc" }}
         {...rest}

@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end",
     alignItems: "center",
     columnGap: 5,
   },
