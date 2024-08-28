@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "./ThemedText";
 import { Image } from "expo-image";
 import { ElevatedCard } from "./ElevatedCard";
@@ -12,37 +12,40 @@ interface Props {
     height: number;
   };
   checked?: boolean;
+  onSelect?: () => void;
 }
 
-export function PaymentMethodCard({ title, img, checked }: Props) {
+export function PaymentMethodCard({ title, img, checked, onSelect }: Props) {
   return (
-    <ElevatedCard style={styles.container}>
-      <ThemedText style={styles.title} type="title">
-        {title}
-      </ThemedText>
-      <View>
-        <Image
+    <TouchableOpacity onPress={onSelect}>
+      <ElevatedCard style={styles.container}>
+        <ThemedText style={styles.title} type="title">
+          {title}
+        </ThemedText>
+        <View>
+          <Image
+            style={[
+              styles.image,
+              {
+                width: img.width,
+                height: img.height,
+              },
+            ]}
+            source={img.source}
+          />
+        </View>
+        <View
           style={[
-            styles.image,
+            styles.radio,
             {
-              width: img.width,
-              height: img.height,
+              backgroundColor: !checked
+                ? Colors.light.tint.accent_3
+                : Colors.light.tint.default,
             },
           ]}
-          source={img.source}
         />
-      </View>
-      <View
-        style={[
-          styles.radio,
-          {
-            backgroundColor: !checked
-              ? Colors.light.tint.accent_3
-              : Colors.light.tint.default,
-          },
-        ]}
-      />
-    </ElevatedCard>
+      </ElevatedCard>
+    </TouchableOpacity>
   );
 }
 

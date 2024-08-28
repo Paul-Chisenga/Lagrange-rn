@@ -27,6 +27,7 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
       label,
       message,
       viewStyle,
+      style,
       onValueChange,
       ...otherProps
     }: ThemedInputProps,
@@ -34,7 +35,7 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
   ) {
     const theme = useColorScheme();
     const color = useThemeColor({}, "text", "default");
-    const placeholderColor = theme === "light" ? "#697386" : "#555";
+    const placeholderColor = theme === "light" ? "#697386" : "#eeeeee";
     const [isFocused, setIsFocused] = useState(false);
 
     const inputRef = useRef<TextInput>(null);
@@ -59,8 +60,9 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
             },
             !!message && !text && styles.inputError,
             isFocused && styles.inputFocused,
+            style,
           ]}
-          placeholderTextColor={placeholderColor}
+          placeholderTextColor={`${placeholderColor}33`}
           selectionColor={Colors.light.tint.default}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
-import { ThemedTextInput } from "../ThemedTextInput";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { ThemedButton } from "../ThemedButton";
 import { ThemedText } from "../ThemedText";
-import { Form } from "../Form/Form";
 import { SwipeModal } from "../SwipeModal";
+import OTPInput from "../Form/OTPInput";
 
 interface Props {
   loading?: boolean;
@@ -32,8 +31,26 @@ export default function OTPForm({
             OTP VERIFICATION
           </ThemedText>
         </View>
+        <View>
+          <View style={{ paddingVertical: 25, alignItems: "center" }}>
+            <OTPInput />
+          </View>
+          <View style={styles.btnContainer}>
+            <ThemedButton
+              style={styles.btn}
+              variant="default"
+              icon={{ name: "key", size: 16 }}
+              textStyle={{ fontSize: 14, lineHeight: 16 }}
+              disabled={loading}
+              loading={loading}
+              onPress={handleSubmit}
+            >
+              Verify
+            </ThemedButton>
+          </View>
+        </View>
         {/* Form */}
-        <Form onSubmit={handleSubmit} style={styles.form}>
+        {/* <Form onSubmit={handleSubmit} style={styles.form}>
           <View style={styles.formGroup}>
             <ThemedTextInput
               label="OTP"
@@ -54,14 +71,16 @@ export default function OTPForm({
               Verify
             </ThemedButton>
           </View>
-        </Form>
+        </Form> */}
       </View>
     </SwipeModal>
   );
 }
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 30, paddingVertical: 20 },
-  title: {},
+  title: {
+    textAlign: "center",
+  },
   description: {},
   form: {
     paddingBottom: 20,

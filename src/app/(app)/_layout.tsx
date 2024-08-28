@@ -9,7 +9,9 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Drawer from "expo-router/drawer";
 import { CustomDrawerContent } from "@/components/navigation/CustomDrawer";
 import { authContext } from "@/context/auth";
-import { Redirect } from "expo-router";
+import { Redirect, useNavigation } from "expo-router";
+import MenuIcon from "../../../assets/svgs/MenuIcon";
+import { DrawerActions } from "@react-navigation/native";
 
 export default function TabLayout() {
   const { session } = useContext(authContext);
@@ -29,6 +31,8 @@ export default function TabLayout() {
   // header colors
   const headerBackground = useThemeColor({}, "background", "system");
   const headerTintColor = useThemeColor({}, "text", "title");
+
+  const navigation = useNavigation();
 
   // Only require authentication within the (app) group's layout as users
   // need to be able to access the (auth) group and sign in again.
@@ -70,6 +74,23 @@ export default function TabLayout() {
             headerTitleStyle: { fontFamily: "IBMPlexSans_700Bold" },
             headerTitleAlign: "center",
             headerTitle: "",
+            headerLeft({ tintColor }) {
+              return (
+                <Pressable
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 5,
+                    paddingHorizontal: 10,
+                  }}
+                  onPress={() =>
+                    navigation.dispatch(DrawerActions.openDrawer())
+                  }
+                >
+                  <MenuIcon width={24} height={24} fill={tintColor} />
+                </Pressable>
+              );
+            },
             headerRight({ tintColor }) {
               return (
                 <View
@@ -91,7 +112,7 @@ export default function TabLayout() {
         >
           <Drawer.Screen name="index" />
           <Drawer.Screen name="sequests" />
-          <Drawer.Screen name="withdraw" />
+          <Drawer.Screen name="withdraw" options={{ headerShown: false }} />
         </Drawer>
       </GestureHandlerRootView>
     </>

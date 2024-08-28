@@ -1,14 +1,16 @@
 import { PaymentMethodCard } from "@/components/PaymentMethodCard";
 import { ThemedView } from "@/components/ThemedView";
-import { Drawer } from "expo-router/drawer";
+import { Stack, useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
-const mpsa = require("../../../assets/images/mpesa.png");
+const mpsa = require("../../../../assets/images/mpesa.png");
 
 export default function Withdraw() {
+  const router = useRouter();
+
   return (
     <>
-      <Drawer.Screen
+      <Stack.Screen
         options={{
           headerTitle: "Withdraw",
         }}
@@ -21,6 +23,9 @@ export default function Withdraw() {
             height: 53,
             width: 91,
           }}
+          onSelect={() => {
+            router.navigate({ pathname: "/withdraw/details" });
+          }}
         />
       </ThemedView>
     </>
@@ -30,6 +35,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    paddingHorizontal: 25,
+    paddingHorizontal: 20,
   },
 });

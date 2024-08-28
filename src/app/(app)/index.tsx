@@ -28,21 +28,6 @@ export default function Index() {
           headerTitle() {
             return <WelcomePageLogo height={45} />;
           },
-          headerLeft({ tintColor }) {
-            return (
-              <Pressable
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 5,
-                  paddingHorizontal: 10,
-                }}
-                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-              >
-                <MenuIcon width={24} height={24} fill={tintColor} />
-              </Pressable>
-            );
-          },
         }}
       />
       {/* <CustomDrawerContent /> */}
