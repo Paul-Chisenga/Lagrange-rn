@@ -5,7 +5,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { Stack, useRouter } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-export default function Details() {
+export default function Mpesa() {
   const router = useRouter();
 
   function handleSubmit() {

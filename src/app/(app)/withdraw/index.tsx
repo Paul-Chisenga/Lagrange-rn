@@ -24,7 +24,7 @@ export default function Withdraw() {
             width: 91,
           }}
           onSelect={() => {
-            router.navigate({ pathname: "/withdraw/details" });
+            router.navigate({ pathname: "/withdraw/mpesa" });
           }}
         />
       </ThemedView>

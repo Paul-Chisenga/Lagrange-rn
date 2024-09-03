@@ -4,6 +4,7 @@ import { Redirect, SplashScreen, useRouter } from "expo-router";
 import Slider from "@/components/intro/Slider";
 
 export default function Index() {
+  const [loaded, setLoaded] = useState(false);
   const [firstTime, setFirstTime] = useState(true);
 
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function Index() {
     if (exists) {
       setFirstTime(false);
     }
+    setLoaded(true);
     await SplashScreen.hideAsync();
   }, []);
 
@@ -25,6 +27,10 @@ export default function Index() {
   useEffect(() => {
     bootStrap();
   }, [bootStrap]);
+
+  if (!loaded) {
+    return null;
+  }
 
   if (firstTime) {
     return <Slider onNext={handleNext} />;

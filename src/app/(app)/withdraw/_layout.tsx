@@ -12,9 +12,7 @@ export default function WithdrawLayout() {
       screenOptions={{
         headerShadowVisible: false,
         headerTintColor: headerTintColor,
-        headerStyle: {
-          // backgroundColor: headerBackground,
-        },
+        headerStyle: {},
         headerTitleStyle: { fontFamily: "IBMPlexSans_700Bold" },
         headerTitleAlign: "center",
         headerRight({ tintColor }) {
@@ -29,7 +27,7 @@ export default function WithdrawLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="details" />
+      <Stack.Screen name="mpesa" />
       <Stack.Screen name="otp" />
     </Stack>
   );
