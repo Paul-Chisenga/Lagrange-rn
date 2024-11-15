@@ -10,7 +10,7 @@ import { ThemedView } from "../ThemedView";
 import WelcomePageLogo from "../../../assets/svgs/WelcomePageLogo";
 import WelcomePageSvg from "../../../assets/svgs/IntroImage1";
 import { ModalCard } from "../ModalCard";
-import { ThemedButton } from "../ThemedButton";
+import { ThemedButton } from "../buttons/ThemedButton";
 import { ThemedText } from "../ThemedText";
 import Constants from "expo-constants";
 import { Colors } from "@/constants/Colors";

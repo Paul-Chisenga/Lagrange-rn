@@ -1,7 +1,9 @@
-import { getStorageItemAsync, setStorageItemAsync } from "@/utils/localstorage";
+import { getStorageItemAsync, setStorageItemAsync } from "@/lib/localstorage";
 import { useCallback, useEffect, useState } from "react";
-import { Redirect, SplashScreen, useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import Slider from "@/components/intro/Slider";
+
+const STORAGE_KEY = process.env.EXPO_PUBLIC_INTRO_SLIDER_STORAGE_KEY!;
 
 export default function Index() {
   const [loaded, setLoaded] = useState(false);
@@ -10,17 +12,16 @@ export default function Index() {
   const router = useRouter();
 
   async function handleNext() {
-    setStorageItemAsync("lagrande_exists", "true");
+    setStorageItemAsync(STORAGE_KEY, "true");
     router.replace("/(app)");
   }
 
   const bootStrap = useCallback(async () => {
-    const exists = await getStorageItemAsync("lagrande_exists");
+    const exists = await getStorageItemAsync(STORAGE_KEY);
     if (exists) {
       setFirstTime(false);
     }
     setLoaded(true);
-    await SplashScreen.hideAsync();
   }, []);
 
   // check if app is loading for the first time ever

@@ -3,6 +3,9 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
+export const dangerColor = "#ef4444";
+export const successColor = "#2AB930"; // green
+
 // TYPES
 export type TintColor = {
   default: string;

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ThemedButtonProps, ThemedButton } from "../ThemedButton";
+import { ThemedButtonProps, ThemedButton } from "../buttons/ThemedButton";
 
 export interface AuthScreenButtonProps extends ThemedButtonProps {}
 export function AuthScreenButton({

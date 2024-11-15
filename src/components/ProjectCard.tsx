@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ThemedText } from "./ThemedText";
-import { ThemedButton } from "./ThemedButton";
+import { ThemedButton } from "./buttons/ThemedButton";
 import { useState } from "react";
 import {
   SwipeModal,
@@ -9,10 +9,9 @@ import {
   SwipeModalFooter,
   SwipeModalHeader,
 } from "./SwipeModal";
-import { ThemedTextInput } from "./ThemedTextInput";
-import PageTitle from "./PageTitle";
-import { ThemedButton1 } from "./ThemedButton1";
-import { Ionicons } from "@expo/vector-icons";
+import { ThemedTextInput } from "./inputs/ThemedTextInput";
+import PageTitle from "./common/PageTitle";
+import { ThemedButton1 } from "./buttons/ThemedButton1";
 
 const images: { [key: string]: string } = {
   project_1: require("../../assets/images/project_1.jpg"),

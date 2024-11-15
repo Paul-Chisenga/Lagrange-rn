@@ -7,11 +7,11 @@ import { StyleSheet, Text, View } from "react-native";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemedButton2 } from "../ThemedButton2";
+import { ThemedButton2 } from "../buttons/ThemedButton2";
 import { usePathname, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { authContext } from "@/context/auth";
-import { setStorageItemAsync } from "@/utils/localstorage";
+import { setStorageItemAsync } from "@/lib/localstorage";
 import { useContext, useState } from "react";
 
 const avatar = require("../../../assets/images/avatar.png");

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { StatusBar } from "expo-status-bar";
@@ -12,6 +12,7 @@ import { authContext } from "@/context/auth";
 import { Redirect, useNavigation } from "expo-router";
 import MenuIcon from "../../../assets/svgs/MenuIcon";
 import { DrawerActions } from "@react-navigation/native";
+import * as SplashScreen from "expo-splash-screen";
 
 export default function TabLayout() {
   const { session } = useContext(authContext);
@@ -34,10 +35,17 @@ export default function TabLayout() {
 
   const navigation = useNavigation();
 
+  // hide splash screen
+  useEffect(() => {
+    if (session) {
+      SplashScreen.hideAsync();
+    }
+  }, [session]);
+
   // Only require authentication within the (app) group's layout as users
-  // need to be able to access the (auth) group and sign in again.
+  // need to be able to access the auth group and sign in again.
   if (!session) {
-    return <Redirect href={"/(auth)"} />;
+    return <Redirect href={"/auth"} />;
   }
 
   return (

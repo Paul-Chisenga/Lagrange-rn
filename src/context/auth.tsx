@@ -1,5 +1,7 @@
-import { getStorageItemAsync, setStorageItemAsync } from "@/utils/localstorage";
-import { PropsWithChildren, createContext, useState } from "react";
+import { getStorageItemAsync, setStorageItemAsync } from "@/lib/localstorage";
+import { PropsWithChildren, createContext, useCallback, useState } from "react";
+
+const AUTH_STORAGE_KEY = process.env.EXPO_PUBLIC_AUTH_STORAGE_KEY!;
 
 interface AuthState {
   session: string | null;
@@ -14,19 +16,19 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [session, setSession] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true); // first time app is opened the context should be loading the session from the persistent storage
 
-  async function handleSignIn(token: string) {
-    await setStorageItemAsync("session", token);
+  const handleSignIn = useCallback(async (token: string) => {
+    await setStorageItemAsync(AUTH_STORAGE_KEY, token);
     setSession(token);
-  }
-  async function handleSignOut() {
-    await setStorageItemAsync("session", null);
+  }, []);
+  const handleSignOut = useCallback(async () => {
+    await setStorageItemAsync(AUTH_STORAGE_KEY, null);
     setSession(null);
-  }
-  async function loadAuthState() {
-    const session = await getStorageItemAsync("session");
+  }, []);
+  const loadAuthState = useCallback(async () => {
+    const session = await getStorageItemAsync(AUTH_STORAGE_KEY);
     setIsLoading(false);
     setSession(session);
-  }
+  }, []);
 
   const initialState: AuthState = {
     session,

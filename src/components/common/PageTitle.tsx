@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle } from "react-native";
-import { ThemedText } from "./ThemedText";
+import { ThemedText } from "../ThemedText";
 import { PropsWithChildren } from "react";
 
 export default function PageTitle({

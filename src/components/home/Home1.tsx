@@ -4,7 +4,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import UpcomingMineSvg from "../../../assets/svgs/UpcomingMineSvg";
 import UpcomingMineLogoSvg from "../../../assets/svgs/UpcomingMineLogoSvg";
-import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedButton } from "@/components/buttons/ThemedButton";
 import { Colors } from "@/constants/Colors";
 
 export function Home1() {

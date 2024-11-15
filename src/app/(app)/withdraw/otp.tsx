@@ -3,9 +3,8 @@ import { Stack } from "expo-router";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import OtpIllustration from "../../../../assets/svgs/OtpIllustration";
 import { ThemedText } from "@/components/ThemedText";
-import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedButton } from "@/components/buttons/ThemedButton";
 import { useHeaderHeight } from "@react-navigation/elements";
-import OTPInput from "@/components/Form/OTPInput";
 import { useState } from "react";
 
 const height = Dimensions.get("window").height;
@@ -56,7 +55,7 @@ export default function Otp() {
                 </ThemedText>
               </View>
               <View style={{ paddingVertical: 53 }}>
-                <OTPInput onChange={setOtp} />
+                {/* <OTPInput onChange={setOtp} /> */}
               </View>
 
               <View style={{ flexDirection: "row" }}>

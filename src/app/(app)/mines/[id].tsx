@@ -2,7 +2,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import mines from "@/data/mines.json";
-import { ThemedTextInput } from "@/components/ThemedTextInput";
+import { ThemedTextInput } from "@/components/inputs/ThemedTextInput";
 import { ThemedText } from "@/components/ThemedText";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Image } from "expo-image";

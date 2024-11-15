@@ -23,9 +23,15 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, authContext } from "@/context/auth";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import axios from "axios";
+
+// set axios global url
+axios.defaults.baseURL = process.env.EXPO_PUBLIC_BACKEND_URL;
 
 // Component that makes sure that navigation stack is loaded only when the authentication context has been computed
-function LoadAuthState() {
+function BootstrapApp() {
   const { isLoading, loadAuthState } = useContext(authContext);
 
   // query session from storage if any
@@ -45,7 +51,7 @@ function LoadAuthState() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="(app)" />
-        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="auth" />
       </Stack>
     </>
   );
@@ -53,6 +59,9 @@ function LoadAuthState() {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+// use query client
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -74,11 +83,17 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <AuthProvider>
-          <LoadAuthState />
-        </AuthProvider>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <AuthProvider>
+              <BootstrapApp />
+            </AuthProvider>
+          </GestureHandlerRootView>
+        </ThemeProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

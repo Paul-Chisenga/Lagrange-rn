@@ -1,6 +1,6 @@
 import { Form } from "@/components/Form/Form";
-import { ThemedButton } from "@/components/ThemedButton";
-import { ThemedTextInput } from "@/components/ThemedTextInput";
+import { ThemedButton } from "@/components/buttons/ThemedButton";
+import { ThemedTextInput } from "@/components/inputs/ThemedTextInput";
 import { ThemedView } from "@/components/ThemedView";
 import { Stack, useRouter } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";

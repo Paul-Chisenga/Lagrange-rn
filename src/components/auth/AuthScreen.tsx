@@ -13,8 +13,7 @@ import { FC, PropsWithChildren } from "react";
 import { SvgProps } from "react-native-svg";
 import { ThemedText } from "../ThemedText";
 import { Colors } from "@/constants/Colors";
-import { Form } from "../Form/Form";
-import { ThemedButton, ThemedButtonProps } from "../ThemedButton";
+import { ThemedButton } from "../buttons/ThemedButton";
 
 const { height } = Dimensions.get("window");
 
@@ -34,11 +33,14 @@ interface AuthScreenContentProps extends PropsWithChildren {}
 export function AuthScreenContent({ children }: AuthScreenContentProps) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <KeyboardAvoidingView keyboardVerticalOffset={40} behavior="position">
-        {children}
-      </KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="padding">{children}</KeyboardAvoidingView>
     </ScrollView>
   );
+}
+
+interface AuthScreenModalProps extends PropsWithChildren {}
+export function AuthScreenModal({ children }: AuthScreenModalProps) {
+  return <ModalCard style={styles.modal}>{children}</ModalCard>;
 }
 
 interface AuthScreenFooterProps extends ViewProps {}
@@ -46,12 +48,51 @@ export function AuthScreenFooter({ style, ...rest }: AuthScreenFooterProps) {
   return <View style={[styles.footer, style]} {...rest} />;
 }
 
-interface AuthScreenProps extends PropsWithChildren {
-  Img: FC<SvgProps>;
-  onSubmit?: () => void;
+interface AuthScreenActionsProps extends ViewProps {
+  isLogin?: boolean;
+  submitting?: boolean;
+  onUseGoogle?: () => void;
+}
+export function AuthScreenActions({
+  style,
+  isLogin,
+  submitting,
+  onUseGoogle,
+  ...rest
+}: AuthScreenActionsProps) {
+  return (
+    <View style={[styles.authActions, style]} {...rest}>
+      <ThemedButton
+        button
+        icon={{ name: "logo-google" }}
+        disabled={submitting}
+        onPress={onUseGoogle}
+        variant="accent_4"
+      />
+      <View style={{ flex: 1 }}>
+        <ThemedButton
+          icon={{
+            name: isLogin ? "log-in-outline" : "person-add-outline",
+            size: 16,
+          }}
+          textStyle={{ fontSize: 14, lineHeight: 16 }}
+          disabled={submitting}
+          loading={submitting}
+          type="outline"
+          style={styles.authBtn}
+        >
+          {isLogin ? "Login" : "Register"}
+        </ThemedButton>
+      </View>
+    </View>
+  );
 }
 
-export function AuthScreen({ Img, children, onSubmit }: AuthScreenProps) {
+interface AuthScreenProps extends PropsWithChildren {
+  Img: FC<SvgProps>;
+}
+
+export function AuthScreen({ Img, children }: AuthScreenProps) {
   return (
     <ThemedView
       style={styles.container}
@@ -62,9 +103,7 @@ export function AuthScreen({ Img, children, onSubmit }: AuthScreenProps) {
         <Img style={styles.img} />
       </View>
 
-      <Form onSubmit={onSubmit} style={styles.form}>
-        <ModalCard style={styles.modal}>{children}</ModalCard>
-      </Form>
+      {children}
     </ThemedView>
   );
 }
@@ -87,11 +126,20 @@ const styles = StyleSheet.create({
   modal: {
     maxHeight: height - Constants.statusBarHeight - 120 - 30,
     paddingHorizontal: 25,
-    paddingTop: 30,
+    paddingTop: 10,
     paddingBottom: 20,
   },
   form: {},
   footer: {
     paddingTop: 5,
+  },
+  authActions: {
+    paddingTop: 5,
+    flexDirection: "row",
+    columnGap: 5,
+    alignItems: "center",
+  },
+  authBtn: {
+    borderRadius: 50,
   },
 });

@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import Slide from "./Slide";
 import IntroImage1 from "../../../assets/svgs/IntroImage1";
 import IntroImage2 from "../../../assets/svgs/IntroImage2";
 import IntroImage3 from "../../../assets/svgs/IntroImage3";
-import { Colors } from "@/constants/Colors";
+import * as SplashScreen from "expo-splash-screen";
 
 const { width } = Dimensions.get("window");
 
@@ -44,6 +44,10 @@ export default function Slider({ onNext }: SliderProps) {
       animated: true,
     });
   }
+
+  useLayoutEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>

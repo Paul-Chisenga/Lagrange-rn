@@ -10,25 +10,35 @@ import {
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Colors } from "@/constants/Colors";
-import { ThemedText } from "./ThemedText";
-import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { ThemedText } from "../ThemedText";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import useForm from "@/hooks/useForm";
 
 export type ThemedInputProps = TextInputProps & {
   label?: string;
-  message?: string;
+  name?: string;
   viewStyle?: ViewProps["style"];
   required?: boolean;
-  onValueChange?: (text: string) => void;
 };
 
 export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
   function (
     {
       label,
-      message,
+      name,
+      required,
+      value,
+      defaultValue,
       viewStyle,
       style,
-      onValueChange,
+      onChangeText,
       ...otherProps
     }: ThemedInputProps,
     ref
@@ -36,12 +46,38 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
     const theme = useColorScheme();
     const color = useThemeColor({}, "text", "default");
     const placeholderColor = theme === "light" ? "#697386" : "#eeeeee";
+
+    const [text, setText] = useState(value ?? defaultValue ?? "");
     const [isFocused, setIsFocused] = useState(false);
+    const [message, setMessage] = useState("");
 
     const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current!, []);
 
-    const [text, setText] = useState("");
+    function handleTextChange(v: string) {
+      setText(v);
+      onChangeText && onChangeText(v);
+    }
+
+    // Validation
+    const { formObjects } = useForm(inputRef, { set: !!name });
+    const handleValidateOnSubmit = useCallback(() => {
+      // only components with a name and required props should be validated
+      if (formObjects) {
+        if (!text && required) {
+          setMessage("This field is required");
+          return false;
+        }
+        formObjects!.formData[name!] = text;
+      }
+      return true;
+    }, [text, name, formObjects]);
+    // add input validator in the Form Element
+    useEffect(() => {
+      if (formObjects) {
+        formObjects.formValidator[name!] = handleValidateOnSubmit;
+      }
+    }, [handleValidateOnSubmit, name, formObjects]);
 
     return (
       <View style={[styles.container, viewStyle]}>
@@ -67,12 +103,8 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           value={text}
-          onChangeText={(e) => {
-            setText(e);
-            if (onValueChange) {
-              onValueChange(e);
-            }
-          }}
+          onChangeText={handleTextChange}
+          onSubmitEditing={formObjects?.handleFormSubmit}
           {...otherProps}
         />
         {message && !text && <Text style={styles.message}>{message}</Text>}

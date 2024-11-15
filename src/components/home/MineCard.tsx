@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import MineIllustration from "../../assets/svgs/MineIllustration";
-import { ThemedButton } from "./ThemedButton";
+import MineIllustration from "../../../assets/svgs/MineIllustration";
+import { ThemedButton } from "../buttons/ThemedButton";
 import { TintColor } from "@/constants/Colors";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import GlobeIcon from "../../assets/svgs/GlobeIcon";
-import { ThemedText } from "./ThemedText";
+import GlobeIcon from "../../../assets/svgs/GlobeIcon";
+import { ThemedText } from "../ThemedText";
 import { Link } from "expo-router";
 
 type Mine = {

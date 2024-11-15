@@ -1,12 +1,19 @@
 import { Pressable, View, StyleSheet } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { ThemedText } from "./ThemedText";
+import { ThemedText } from "../ThemedText";
 import { TintColor } from "@/constants/Colors";
 import { IconProps } from "@expo/vector-icons/build/createIconSet";
 import { Ionicons } from "@expo/vector-icons";
-import { ComponentProps, forwardRef, FunctionComponent } from "react";
+import {
+  ComponentProps,
+  forwardRef,
+  FunctionComponent,
+  useCallback,
+  useRef,
+} from "react";
 import { SvgProps } from "react-native-svg";
+import useForm from "@/hooks/useForm";
 
 export type ThemedButtonProps = {
   lightColor?: string;
@@ -17,6 +24,7 @@ export type ThemedButtonProps = {
   Icon?: FunctionComponent<SvgProps>;
   loading?: boolean;
   button?: boolean;
+  disabled?: boolean;
   onPress?: () => void;
 };
 
@@ -29,6 +37,7 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
     iconName,
     Icon,
     loading,
+    disabled,
     button = false,
     onPress,
   }: ThemedButtonProps,
@@ -40,14 +49,26 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
     variant
   );
 
+  // validation
+  const wrapperRef = useRef<View>(null);
+  const { formObjects } = useForm(wrapperRef, { set: !button });
+
+  const handlePress = useCallback(() => {
+    if (disabled) return;
+    if (formObjects) {
+      formObjects.handleFormSubmit();
+    }
+    onPress && onPress();
+  }, [formObjects, onPress, disabled]);
+
   return (
-    <View style={styles.container}>
+    <View ref={wrapperRef} style={styles.container}>
       <Pressable
         ref={ref}
         style={styles.btnContainer}
         android_ripple={{ color: "#ccc" }}
-        onPress={onPress}
         disabled={loading}
+        onPress={handlePress}
       >
         {children && (
           <ThemedText style={[styles.text, { color }]}>{children}</ThemedText>

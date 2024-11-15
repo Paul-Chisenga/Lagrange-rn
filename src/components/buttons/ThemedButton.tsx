@@ -10,11 +10,12 @@ import {
 } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { ThemedText } from "./ThemedText";
+import { ThemedText } from "../ThemedText";
 import { BackgroundColor } from "@/constants/Colors";
 import { IconProps } from "@expo/vector-icons/build/createIconSet";
 import { Ionicons } from "@expo/vector-icons";
-import { ComponentProps, forwardRef } from "react";
+import { ComponentProps, forwardRef, useCallback, useRef } from "react";
+import useForm from "@/hooks/useForm";
 
 export type ThemedButtonProps = PressableProps & {
   lightColor?: string;
@@ -27,6 +28,7 @@ export type ThemedButtonProps = PressableProps & {
   style?: ViewStyle;
   loading?: boolean;
   button?: boolean;
+  onPress?: () => void;
 };
 
 export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
@@ -40,7 +42,9 @@ export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
     icon,
     textStyle,
     loading,
+    disabled,
     button = false,
+    onPress,
     ...rest
   }: ThemedButtonProps,
   ref
@@ -57,8 +61,21 @@ export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
     tintColor = backgroundColor;
   }
 
+  // validation
+  const wrapperRef = useRef<View>(null);
+  const { formObjects } = useForm(wrapperRef, { set: !button });
+
+  const handlePress = useCallback(() => {
+    if (disabled) return;
+    if (formObjects) {
+      formObjects.handleFormSubmit();
+    }
+    onPress && onPress();
+  }, [formObjects, onPress, disabled]);
+
   return (
     <View
+      ref={wrapperRef}
       style={[
         { borderRadius: style?.borderRadius ?? 4, overflow: "hidden" },
         icon && !children && styles.icon,
@@ -81,11 +98,12 @@ export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
           icon && !children && styles.icon,
           styles.container,
           style,
-          rest.disabled && {
+          disabled && {
             opacity: 0.7,
           },
         ]}
         android_ripple={{ color: "#ccc" }}
+        onPress={handlePress}
         {...rest}
       >
         {icon && !loading && <Ionicons size={12} color={tintColor} {...icon} />}
