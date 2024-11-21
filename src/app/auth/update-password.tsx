@@ -20,7 +20,7 @@ import FetchSuccess from "@/components/common/FetchSuccess";
 export default function UpdatePassword() {
   const { email } = useLocalSearchParams<{ email: string }>();
 
-  const { mutate, error, isPending, isSuccess } = useMutation({
+  const { mutate, error, isPending, isSuccess, data } = useMutation({
     mutationFn: updatePassword,
     onSuccess() {
       setTimeout(() => {
@@ -56,11 +56,7 @@ export default function UpdatePassword() {
               />
             </View>
             <FetchError error={error} />
-            {isSuccess && (
-              <FetchSuccess
-                message={"Password updated, redirecting you to login..."}
-              />
-            )}
+            {isSuccess && <FetchSuccess message={data} />}
           </AuthScreenContent>
           <AuthScreenFooter>
             <ThemedButton
