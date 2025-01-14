@@ -10,8 +10,6 @@ import Drawer from "expo-router/drawer";
 import { CustomDrawerContent } from "@/components/navigation/CustomDrawer";
 import { authContext } from "@/context/auth";
 import { Redirect, useNavigation } from "expo-router";
-import MenuIcon from "../../../assets/svgs/MenuIcon";
-import { DrawerActions } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 

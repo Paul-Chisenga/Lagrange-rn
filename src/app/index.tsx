@@ -13,7 +13,7 @@ export default function Index() {
 
   async function handleNext() {
     setStorageItemAsync(STORAGE_KEY, "true");
-    router.replace("/(app)");
+    router.replace("/(tabs)");
   }
 
   const bootStrap = useCallback(async () => {
