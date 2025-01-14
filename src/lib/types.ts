@@ -1,3 +1,10 @@
+export type ErrorMessage = string | string[];
+export type Pagination = {
+  total: number;
+  limit: number;
+  count: number;
+};
+
 export type FormData = Record<string, string | boolean | undefined>;
 //
 export type AuthResponseData = {

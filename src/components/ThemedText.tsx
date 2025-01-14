@@ -38,24 +38,24 @@ export const ThemedText = forwardRef<Text, ThemedTextProps>(function (
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: 12,
+    // fontSize: 12,
     lineHeight: 24,
     fontFamily: "Inter_400Regular",
   },
   defaultSemiBold: {
-    fontSize: 12,
+    // fontSize: 12,
     lineHeight: 24,
     // fontWeight: "600",
     fontFamily: "Inter_600SemiBold",
   },
   title: {
     fontSize: 20,
-    lineHeight: 26,
+    // lineHeight: 26,
     fontFamily: "IBMPlexSans_700Bold",
   },
   subtitle: {
     fontSize: 16,
-    fontFamily: "IBMPlexSans_600SemiBold",
+    fontFamily: "IBMPlexSans_400Regular",
   },
   link: {
     lineHeight: 30,

@@ -7,6 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
     "androidStatusBar": {
       "hidden": true
     },
@@ -15,17 +16,6 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 1,
-      "splash": {
-        "backgroundColor": "#1672EC",
-        "resizeMode": "contain",
-        "image": "./assets/images/splash.png",
-        "dark": {
-          "backgroundColor": "#151718",
-          "resizeMode": "contain",
-          "image": "./assets/images/splash.png"
-        }
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -39,7 +29,20 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

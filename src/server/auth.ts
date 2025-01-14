@@ -10,7 +10,7 @@ import axios, { AxiosError } from "axios";
 
 export async function signUp(data: SignUpPayload) {
   if (data.password !== data.confirmPw) {
-    throw new AxiosError("Password does not match", "422");
+    throw new AxiosError("Passwords do not match", "422");
   }
   const res = await axios.post<AuthResponseData>("auth/sign-up", data);
 
@@ -40,7 +40,7 @@ export async function resetPassword(data: FormData) {
 }
 export async function updatePassword(data: UpdatePasswordPayload) {
   if (data.password !== data.confirmPw) {
-    throw new AxiosError("Password does not match", "422");
+    throw new AxiosError("Passwords do not match", "422");
   }
   const res = await axios.put<string>("auth/update-password", data);
   return res.data;

@@ -14,11 +14,20 @@ export async function sleep(duration: number) {
  * @returns
  * parses error from the server
  */
-export function parseMutationError(error: unknown) {
+export function parseMutationError(error: unknown): {
+  status: number;
+  message: string;
+} {
   if (axios.isAxiosError(error)) {
-    return (
-      error.response?.data?.message ?? error.message ?? "Something went wrong"
-    );
+    if (error.status === 404)
+      return { status: 404, message: "Connection error" };
+    return {
+      status: error.status ?? 500,
+      message:
+        error.response?.data?.message ??
+        error.message ??
+        "Something went wrong",
+    };
   }
-  return "Something went wrong";
+  return { status: 500, message: "Something went wrong" };
 }

@@ -10,31 +10,32 @@ export function findFormObjects(fiberNode?: { return: any }): {
   formData: FormData;
   formValidator: FormValidator;
   handleFormSubmit: () => void;
-} {
+} | null {
   let returnNode = fiberNode?.return;
   while (returnNode) {
-    if (
-      returnNode.memoizedProps?.formData &&
-      returnNode.memoizedProps?.formValidator &&
-      returnNode.memoizedProps?.handleFormSubmit
-    ) {
-      return returnNode.memoizedProps;
+    const props = returnNode.memoizedProps;
+    if (props?.formData && props?.formValidator && props?.handleFormSubmit) {
+      return {
+        formData: props.formData,
+        formValidator: props.formValidator,
+        handleFormSubmit: props.handleFormSubmit,
+      };
     }
     returnNode = returnNode.return;
   }
-  return { formData: {}, formValidator: {}, handleFormSubmit() {} };
+
+  return null;
 }
 
 export default function useForm(ref: any, { set }: { set: boolean }) {
-  const [formObjects, setFormObjects] =
-    useState<ReturnType<typeof findFormObjects>>();
+  const [formObjects, setFormObjects] = useState<ReturnType<
+    typeof findFormObjects
+  > | null>(null);
 
   useEffect(() => {
     // find form objects if the input is nested into a Form component tree
     if (set) {
-      setFormObjects(
-        findFormObjects(ref.current?._internalFiberInstanceHandleDEV)
-      );
+      setFormObjects(findFormObjects(ref.current?.__internalInstanceHandle));
     }
   }, []);
 

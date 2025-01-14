@@ -72,9 +72,11 @@ export const ThemedTextInput = forwardRef<TextInput, ThemedInputProps>(
       }
       return true;
     }, [text, name, formObjects]);
-    // add input validator in the Form Element
+
+    //initialize the input data and add input validator in the Form Element
     useEffect(() => {
       if (formObjects) {
+        formObjects!.formData[name!] = text;
         formObjects.formValidator[name!] = handleValidateOnSubmit;
       }
     }, [handleValidateOnSubmit, name, formObjects]);
@@ -117,17 +119,17 @@ const styles = StyleSheet.create({
     rowGap: 4,
   },
   label: {
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 12,
+    fontFamily: "Inter_400Regular",
+    // fontSize: 12,
     lineHeight: 16,
   },
   input: {
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    fontFamily: "Inter_600SemiBold",
-    fontSize: 12,
+    paddingVertical: 15,
+    fontFamily: "Inter_400Regular",
+    // fontSize: 12,
     lineHeight: 16,
   },
   inputFocused: {

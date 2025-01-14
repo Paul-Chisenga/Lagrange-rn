@@ -1,31 +1,28 @@
 import { StyleSheet, View } from "react-native";
-import { ThemedText } from "./ThemedText";
+import { ThemedText } from "../ThemedText";
 import { Colors } from "@/constants/Colors";
-import { ElevatedCard } from "./ElevatedCard";
+import { ElevatedCard } from "../ElevatedCard";
+import { Sequest } from "@/models/sequests";
 
-interface Sequest {
-  project: string;
-  trees: number;
-  carbon: number;
+interface SequestCardProps {
+  data: Sequest;
 }
 
-interface Props extends Sequest {}
-
-export function SequestCard({ project, trees, carbon }: Props) {
+export function SequestCard({ data }: SequestCardProps) {
   return (
     <ElevatedCard style={styles.container}>
       <View style={styles.row1}>
         <ThemedText style={styles.project} type="subtitle">
-          {project}
+          {data.project.title}
         </ThemedText>
         <ThemedText style={styles.carbon} type="subtitle">
-          {carbon} tCO2e
+          {data.tCO2} tCO2e
         </ThemedText>
       </View>
       <View style={styles.row2}>
-        <ThemedText style={styles.trees}>{trees} Trees planted</ThemedText>
+        <ThemedText style={styles.trees}>{1} Trees planted</ThemedText>
         <ThemedText style={styles.cash} type="subtitle">
-          Ksh 3,000,579
+          Ksh {data.cash.ksh}
         </ThemedText>
       </View>
     </ElevatedCard>

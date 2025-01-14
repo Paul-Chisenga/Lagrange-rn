@@ -13,6 +13,7 @@ import { Redirect, useNavigation } from "expo-router";
 import MenuIcon from "../../../assets/svgs/MenuIcon";
 import { DrawerActions } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
+import { DrawerToggleButton } from "@react-navigation/drawer";
 
 export default function TabLayout() {
   const { session } = useContext(authContext);
@@ -82,23 +83,24 @@ export default function TabLayout() {
             headerTitleStyle: { fontFamily: "IBMPlexSans_700Bold" },
             headerTitleAlign: "center",
             headerTitle: "",
-            headerLeft({ tintColor }) {
-              return (
-                <Pressable
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: 5,
-                    paddingHorizontal: 10,
-                  }}
-                  onPress={() =>
-                    navigation.dispatch(DrawerActions.openDrawer())
-                  }
-                >
-                  <MenuIcon width={24} height={24} fill={tintColor} />
-                </Pressable>
-              );
-            },
+            headerLeft: () => <DrawerToggleButton />,
+            // headerLeft({ tintColor }) {
+            //   return (
+            //     <Pressable
+            //       style={{
+            //         flexDirection: "row",
+            //         alignItems: "center",
+            //         gap: 5,
+            //         paddingHorizontal: 10,
+            //       }}
+            //       onPress={() =>
+            //         navigation.dispatch(DrawerActions.toggleDrawer())
+            //       }
+            //     >
+            //       <MenuIcon width={24} height={24} fill={tintColor} />
+            //     </Pressable>
+            //   );
+            // },
             headerRight({ tintColor }) {
               return (
                 <View

@@ -6,28 +6,24 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import GlobeIcon from "../../../assets/svgs/GlobeIcon";
 import { ThemedText } from "../ThemedText";
 import { Link } from "expo-router";
+import { Mine } from "@/models/mines";
 
-type Mine = {
-  id: string;
-  title: string;
-};
-
-interface Props {
-  mine: Mine;
+interface MineCardProps {
+  data: Mine;
   variant: keyof TintColor;
 }
-export function MineCard({ mine, variant }: Props) {
+export function MineCard({ data, variant }: MineCardProps) {
   const tintColor = useThemeColor({}, "tint", variant);
   return (
     <View style={[styles.container, { backgroundColor: `${tintColor}33` }]}>
       {/* globe Icon */}
       <GlobeIcon style={styles.globeIcon} fill={tintColor} />
       <ThemedText lightColor="#000" style={styles.title}>
-        {mine.title}
+        {data.title}
       </ThemedText>
       <MineIllustration style={styles.illustration} />
       <View style={styles.btnContainer}>
-        <Link href={`/mines/${mine.id}`} asChild>
+        <Link href={`/mines/${data.id}`} asChild>
           <ThemedButton
             style={styles.btn}
             textStyle={{ fontSize: 7, lineHeight: 12 }}

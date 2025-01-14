@@ -125,7 +125,7 @@ export const ThemedButton = forwardRef<View, ThemedButtonProps>(function (
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 12,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -133,13 +133,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   text: {
-    textTransform: "uppercase",
+    textTransform: "capitalize",
     textAlign: "center",
-    letterSpacing: 1.5,
-    fontSize: 10,
-    fontFamily: "IBMPlexSans_700Bold",
+    // letterSpacing: 1.5,
+    fontSize: 14,
+    fontFamily: "IBMPlexSans_600SemiBold",
+    // fontFamily: "IBMPlexSans_700Bold",
     marginHorizontal: 5,
-    lineHeight: 12,
+    // lineHeight: 12,
   },
   icon: {
     width: 45,

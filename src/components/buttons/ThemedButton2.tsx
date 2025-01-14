@@ -43,6 +43,7 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
   }: ThemedButtonProps,
   ref
 ) {
+  const btnBg = useThemeColor({}, "background", "system");
   const color = useThemeColor(
     { light: lightColor, dark: darkColor },
     "tint",
@@ -65,7 +66,7 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
     <View ref={wrapperRef} style={styles.container}>
       <Pressable
         ref={ref}
-        style={styles.btnContainer}
+        style={[styles.btnContainer, { backgroundColor: btnBg }]}
         android_ripple={{ color: "#ccc" }}
         disabled={loading}
         onPress={handlePress}
@@ -73,8 +74,8 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
         {children && (
           <ThemedText style={[styles.text, { color }]}>{children}</ThemedText>
         )}
-        {!Icon && <Ionicons size={18} color={color} name={iconName} />}
-        {Icon && <Icon width={18} height={18} fill={color} />}
+        {!Icon && <Ionicons size={24} color={color} name={iconName} />}
+        {Icon && <Icon width={24} height={24} fill={color} />}
       </Pressable>
     </View>
   );
@@ -83,12 +84,14 @@ export const ThemedButton2 = forwardRef<View, ThemedButtonProps>(function (
 const styles = StyleSheet.create({
   container: {
     overflow: "hidden",
-    borderRadius: 5,
+    borderRadius: 20,
   },
   btnContainer: {
     flexDirection: "row",
     alignItems: "center",
     columnGap: 5,
+    padding: 8,
+    borderRadius: 10,
   },
   text: {
     letterSpacing: 0.36,
