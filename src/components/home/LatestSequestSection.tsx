@@ -20,13 +20,14 @@ export default function LatestSequestSection({
     error,
     isLoading,
     isFetched,
+    isRefetching,
     refetch,
   } = useQuery({
     queryKey: ["latest-sequest"],
     queryFn: getLatestSequest,
     retry: () => false,
   });
-  useDataRefetch({ refresh, onRefreshed, isFetched, refetch });
+  useDataRefetch({ refresh, onRefreshed, isRefetching, isFetched, refetch });
   return (
     <View style={styles.latestSequest}>
       <SectionTitle title="Latest sequest" link={"/sequests"} />

@@ -1,10 +1,5 @@
-import { Stack } from "expo-router";
-import { View, Text } from "react-native";
+import { Slot } from "expo-router";
 
 export default function MinesLayout() {
-  return (
-    <Stack>
-      <Stack.Screen name="index" />
-    </Stack>
-  );
+  return <Slot />;
 }

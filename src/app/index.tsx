@@ -37,5 +37,5 @@ export default function Index() {
     return <Slider onNext={handleNext} />;
   }
 
-  return <Redirect href={"/(app)"} />;
+  return <Redirect href={"/(tabs)"} />;
 }

@@ -1,9 +1,8 @@
+import { ThemedView } from "@/components/ThemedView";
 import { StyleSheet, Text, View } from "react-native";
 export default function Mines() {
-  return (
-    <View>
-      <Text>Mines</Text>
-    </View>
-  );
+  return <ThemedView style={styles.container}></ThemedView>;
 }
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+});

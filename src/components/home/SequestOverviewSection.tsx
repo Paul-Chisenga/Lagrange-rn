@@ -15,17 +15,19 @@ export default function SequestOverviewSection({
   refresh,
   onRefreshed,
 }: SequestOverviewSectionProps) {
-  const { data, error, isLoading, isFetched, refetch } = useQuery({
-    queryKey: ["sequests-overview"],
-    queryFn: getSequestsOverview,
-    retry: () => false,
-  });
+  const { data, error, isLoading, isFetched, isRefetching, refetch } = useQuery(
+    {
+      queryKey: ["sequests-overview"],
+      queryFn: getSequestsOverview,
+      retry: () => false,
+    }
+  );
 
-  useDataRefetch({ refresh, onRefreshed, isFetched, refetch });
+  useDataRefetch({ refresh, onRefreshed, isRefetching, isFetched, refetch });
 
   return (
     <View style={styles.container}>
-      <PageTitle>Total Carbon Sequested</PageTitle>
+      {/* <PageTitle>Total Carbon Sequested</PageTitle> */}
       {isLoading && !data && (
         <Placeholder Animation={ShineOverlay}>
           <PlaceholderLine

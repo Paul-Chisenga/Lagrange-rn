@@ -15,12 +15,14 @@ export default function ActiveMinesSection({
   refresh,
   onRefreshed,
 }: ActiveMinesSectionProps) {
-  const { data, error, isLoading, isFetched, refetch } = useQuery({
-    queryKey: ["regions"],
-    queryFn: getMines,
-    retry: () => false,
-  });
-  useDataRefetch({ refresh, onRefreshed, isFetched, refetch });
+  const { data, error, isLoading, isFetched, isRefetching, refetch } = useQuery(
+    {
+      queryKey: ["regions"],
+      queryFn: getMines,
+      retry: () => false,
+    }
+  );
+  useDataRefetch({ refresh, onRefreshed, isFetched, isRefetching, refetch });
   return (
     <View style={styles.container}>
       <SectionTitle

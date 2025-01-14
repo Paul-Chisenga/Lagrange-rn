@@ -1,3 +1,4 @@
+import { sleep } from "@/lib/utils";
 import { MinesResponseData } from "@/models/mines";
 import axios from "axios";
 
